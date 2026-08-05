@@ -9,6 +9,10 @@ on:
     - cron: '0 8 * * *'
   workflow_dispatch: {}  # allows manual "Run workflow" button for testing
 
+concurrency:
+  group: mufc-fixtures
+  cancel-in-progress: false
+  
 jobs:
   send-fixtures:
     runs-on: ubuntu-latest
