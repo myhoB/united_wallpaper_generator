@@ -5,6 +5,7 @@ import calendar
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo
 import requests
+import json
 
 LOCAL_TZ = ZoneInfo("Europe/Bratislava")
 
@@ -14,7 +15,7 @@ NTFY_TOPIC = os.environ["NTFY_TOPIC"]
 
 # Man United's team ID on football-data.org
 TEAM_ID = 66
-
+SNAPSHOT_FILE = "last_fixtures.json"
 
 def get_upcoming_month_range():
     """Return (date_from, date_to) strings for the next calendar month."""
@@ -51,6 +52,20 @@ def to_local(utc_date_str):
     dt_utc = datetime.strptime(utc_date_str, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     return dt_utc.astimezone(LOCAL_TZ)
 
+def load_snapshot():
+    if os.path.exists(SNAPSHOT_FILE):
+        with open(SNAPSHOT_FILE) as f:
+            return json.load(f)
+    return {}
+
+def save_snapshot(matches):
+    snapshot = {str(m["id"]): m["utcDate"] for m in matches}
+    with open(SNAPSHOT_FILE, "w") as f:
+        json.dump(snapshot, f, indent=2)
+
+def fixtures_changed(matches, previous_snapshot):
+    current = {str(m["id"]): m["utcDate"] for m in matches}
+    return current != previous_snapshot
 
 def format_fixtures_plain(matches, year, month):
     """Fallback formatter that doesn't need any AI call."""
@@ -156,6 +171,10 @@ def main():
     print(f"Fetching fixtures from {date_from} to {date_to}")
 
     matches = fetch_fixtures(date_from, date_to)
+    previous = load_snapshot()
+    if not fixtures_changed(matches, previous):
+        print("No fixture changes detected — skipping notification.")
+        return
     print(f"Found {len(matches)} scheduled matches")
 
     formatted = format_fixtures_with_gpt(matches, year, month)
@@ -164,6 +183,7 @@ def main():
     print("---------------------------")
 
     send_ntfy(formatted, year, month)
+    save_snapshot(matches)
     print("Notification sent.")
 
 
