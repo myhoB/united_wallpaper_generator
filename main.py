@@ -43,7 +43,7 @@ def fetch_fixtures(date_from, date_to):
 
 def shorten_name(name):
     name = name.replace("FC ","").replace(" FC","")
-    name.replace("Manchester", "Man.")
+    name = name.replace("Manchester", "Man.")
     return name.strip()
 
 
