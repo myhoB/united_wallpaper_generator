@@ -42,7 +42,9 @@ def fetch_fixtures(date_from, date_to):
 
 
 def shorten_name(name):
-    return name.replace("Manchester", "Man.")
+    name = name.replace("FC ","").replace(" FC","")
+    name.replace("Manchester", "Man.")
+    return name.strip()
 
 
 def to_local(utc_date_str):
