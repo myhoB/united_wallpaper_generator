@@ -1,8 +1,12 @@
 import os
 import sys
+import time
 import calendar
-from datetime import date
+from datetime import date, datetime, timezone
+from zoneinfo import ZoneInfo
 import requests
+
+LOCAL_TZ = ZoneInfo("Europe/Bratislava")
 
 FOOTBALL_DATA_API_KEY = os.environ["FOOTBALL_DATA_API_KEY"]
 GPT_API_KEY = os.environ["GPT_API_KEY"]
@@ -37,50 +41,100 @@ def fetch_fixtures(date_from, date_to):
     return data.get("matches", [])
 
 
-def format_fixtures_with_gpt(matches, year, month):
+def shorten_name(name):
+    return name.replace("Manchester", "Man.")
+
+
+def to_local(utc_date_str):
+    dt_utc = datetime.strptime(utc_date_str, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    return dt_utc.astimezone(LOCAL_TZ)
+
+
+def format_fixtures_plain(matches, year, month):
+    """Fallback formatter that doesn't need any AI call."""
+    lines = []
+
+    sorted_matches = sorted(matches, key=lambda m: m["utcDate"])
+    for m in sorted_matches:
+        home = shorten_name(m["homeTeam"]["name"])
+        away = shorten_name(m["awayTeam"]["name"])
+        competition = m.get("competition", {}).get("name", "")
+        local_dt = to_local(m["utcDate"])
+
+        lines.append(f"{local_dt.strftime('%a %-d %b')} | {competition}")
+        lines.append(f"{home} vs. {away}")
+        lines.append(f"time {local_dt.strftime('%H:%M')}")
+        lines.append("")  # blank line between fixtures
+
+    return "\n".join(lines).strip()
+
+
+def format_fixtures_with_gpt(matches, year, month, max_retries=3):
     month_name = calendar.month_name[month]
 
     if not matches:
         return f"No scheduled Manchester United fixtures found for {month_name} {year} yet. Check back closer to the month."
 
-    # Build a simple raw listing to hand to GPT
+    # Build a raw listing with LOCAL times already computed (do not let the model
+    # do timezone math itself — compute it here and just have GPT arrange it)
     raw_lines = []
     for m in matches:
-        home = m["homeTeam"]["name"]
-        away = m["awayTeam"]["name"]
-        utc_date = m["utcDate"]  # ISO 8601, e.g. 2026-09-13T14:00:00Z
+        home = shorten_name(m["homeTeam"]["name"])
+        away = shorten_name(m["awayTeam"]["name"])
+        local_dt = to_local(m["utcDate"])
         competition = m.get("competition", {}).get("name", "")
-        raw_lines.append(f"{utc_date} | {home} vs {away} | {competition}")
+        raw_lines.append(
+            f"{local_dt.strftime('%a %-d %b')} | {competition} | {home} vs. {away} | time {local_dt.strftime('%H:%M')}"
+        )
 
     raw_text = "\n".join(raw_lines)
 
-    prompt = f"""Here is a raw list of Manchester United fixtures for {month_name} {year}.
-Each line is: UTC datetime | Home vs Away | Competition
+    prompt = f"""Here is a list of Manchester United fixtures for {month_name} {year}, with times already converted to local Slovak time.
+Each line is: Day DateMonth | Competition | Home vs. Away | time HH:MM
 
 {raw_text}
 
-Format this into a clean, copy-paste-friendly list for a wallpaper/personal reference.
-Convert each UTC datetime to a readable local date and time format like "Sat 13 Sep - 15:00 UK".
-Assume UK time (BST/GMT as appropriate for the date) unless told otherwise.
-One fixture per line, format: "DD Mon (Day) - HH:MM UK - Opponent (H/A) - Competition"
-Sort chronologically. Add a title line at the top: "Manchester United Fixtures - {month_name} {year}".
-Return ONLY the formatted list, no extra commentary."""
+Reformat each fixture into EXACTLY this 3-line layout, with a blank line between fixtures:
+Day DateMonth | Competition
+Home vs. Away
+time HH:MM
 
-    resp = requests.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GPT_API_KEY}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": "gpt-4o-mini",
-            "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.2,
-        },
-        timeout=60,
-    )
-    resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"].strip()
+Example:
+Sun 6 Sep | Premier League
+Man. City vs. Man. United
+time 16:00
+
+Keep the day/date/time and team names exactly as given (do not alter them). Sort chronologically.
+Return ONLY the formatted list, no title, no extra commentary."""
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {GPT_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0.2,
+                },
+                timeout=60,
+            )
+            if resp.status_code == 429:
+                wait = 2 ** attempt  # 2s, 4s, 8s
+                print(f"GPT rate-limited (attempt {attempt}/{max_retries}), waiting {wait}s...")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            return resp.json()["choices"][0]["message"]["content"].strip()
+        except requests.exceptions.RequestException as e:
+            print(f"GPT call failed (attempt {attempt}/{max_retries}): {e}")
+            time.sleep(2 ** attempt)
+
+    print("GPT formatting failed after retries — falling back to plain formatting.")
+    return format_fixtures_plain(matches, year, month)
 
 
 def send_ntfy(message, year, month):
