@@ -1,11 +1,11 @@
 import os
 import sys
 import time
+import json
 import calendar
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo
 import requests
-import json
 
 LOCAL_TZ = ZoneInfo("Europe/Bratislava")
 
@@ -15,42 +15,48 @@ NTFY_TOPIC = os.environ["NTFY_TOPIC"]
 
 # Man United's team ID on football-data.org
 TEAM_ID = 66
-SNAPSHOT_FILE = "last_fixtures.json"
 
-def get_upcoming_month_range():
-    """Return (date_from, date_to) strings for the next calendar month."""
+
+def get_date_range():
+    """Return (date_from, date_to) covering the full current month and full next month."""
     today = date.today()
     if today.month == 12:
-        year, month = today.year + 1, 1
+        next_year, next_month = today.year + 1, 1
     else:
-        year, month = today.year, today.month + 1
+        next_year, next_month = today.year, today.month + 1
 
-    last_day = calendar.monthrange(year, month)[1]
-    date_from = date(year, month, 1).isoformat()
-    date_to = date(year, month, last_day).isoformat()
-    return date_from, date_to, year, month
+    last_day = calendar.monthrange(next_year, next_month)[1]
+    date_from = date(today.year, today.month, 1).isoformat()
+    date_to = date(next_year, next_month, last_day).isoformat()
+    return date_from, date_to
+
+
+EXCLUDED_STATUSES = {"POSTPONED", "SUSPENDED", "CANCELLED"}
 
 
 def fetch_fixtures(date_from, date_to):
     url = f"https://api.football-data.org/v4/teams/{TEAM_ID}/matches"
     headers = {"X-Auth-Token": FOOTBALL_DATA_API_KEY}
-    params = {"dateFrom": date_from, "dateTo": date_to, "status": "SCHEDULED"}
+    params = {"dateFrom": date_from, "dateTo": date_to}
 
     resp = requests.get(url, headers=headers, params=params, timeout=30)
     resp.raise_for_status()
     data = resp.json()
-    return data.get("matches", [])
+    matches = data.get("matches", [])
+
+    return [m for m in matches if m.get("status") not in EXCLUDED_STATUSES]
 
 
 def shorten_name(name):
-    name = name.replace("FC ","").replace(" FC","")
-    name = name.replace("Manchester", "Man.")
-    return name.strip()
+    return name.replace("Manchester", "Man.")
 
 
 def to_local(utc_date_str):
     dt_utc = datetime.strptime(utc_date_str, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     return dt_utc.astimezone(LOCAL_TZ)
+
+
+SNAPSHOT_FILE = "last_fixtures.json"
 
 def load_snapshot():
     if os.path.exists(SNAPSHOT_FILE):
@@ -67,7 +73,8 @@ def fixtures_changed(matches, previous_snapshot):
     current = {str(m["id"]): m["utcDate"] for m in matches}
     return current != previous_snapshot
 
-def format_fixtures_plain(matches, year, month):
+
+def format_fixtures_plain(matches):
     """Fallback formatter that doesn't need any AI call."""
     lines = []
 
@@ -86,11 +93,9 @@ def format_fixtures_plain(matches, year, month):
     return "\n".join(lines).strip()
 
 
-def format_fixtures_with_gpt(matches, year, month, max_retries=3):
-    month_name = calendar.month_name[month]
-
+def format_fixtures_with_gpt(matches, max_retries=3):
     if not matches:
-        return f"No scheduled Manchester United fixtures found for {month_name} {year} yet. Check back closer to the month."
+        return "No scheduled Manchester United fixtures found for this month or next month yet. Check back later."
 
     # Build a raw listing with LOCAL times already computed (do not let the model
     # do timezone math itself — compute it here and just have GPT arrange it)
@@ -106,7 +111,7 @@ def format_fixtures_with_gpt(matches, year, month, max_retries=3):
 
     raw_text = "\n".join(raw_lines)
 
-    prompt = f"""Here is a list of Manchester United fixtures for {month_name} {year}, with times already converted to local Slovak time.
+    prompt = f"""Here is a list of Manchester United fixtures covering the remainder of this month and all of next month, with times already converted to local Slovak time.
 Each line is: Day DateMonth | Competition | Home vs. Away | time HH:MM
 
 {raw_text}
@@ -151,14 +156,13 @@ Return ONLY the formatted list, no title, no extra commentary."""
             time.sleep(2 ** attempt)
 
     print("GPT formatting failed after retries — falling back to plain formatting.")
-    return format_fixtures_plain(matches, year, month)
+    return format_fixtures_plain(matches)
 
 
-def send_ntfy(message, year, month):
-    month_name = calendar.month_name[month]
+def send_ntfy(message):
     url = f"https://ntfy.sh/{NTFY_TOPIC}"
     headers = {
-        "Title": f"MUFC Fixtures - {month_name} {year}".encode("utf-8"),
+        "Title": "MUFC Fixtures - This & Next Month".encode("utf-8"),
         "Priority": "default",
         "Tags": "soccer",
     }
@@ -167,24 +171,26 @@ def send_ntfy(message, year, month):
 
 
 def main():
-    date_from, date_to, year, month = get_upcoming_month_range()
+    date_from, date_to = get_date_range()
     print(f"Fetching fixtures from {date_from} to {date_to}")
 
     matches = fetch_fixtures(date_from, date_to)
+    print(f"Found {len(matches)} scheduled matches")
+
     previous = load_snapshot()
     if not fixtures_changed(matches, previous):
         print("No fixture changes detected — skipping notification.")
         return
-    print(f"Found {len(matches)} scheduled matches")
 
-    formatted = format_fixtures_with_gpt(matches, year, month)
+    formatted = format_fixtures_with_gpt(matches)
     print("---- Formatted output ----")
     print(formatted)
     print("---------------------------")
 
-    send_ntfy(formatted, year, month)
-    save_snapshot(matches)
+    send_ntfy(formatted)
     print("Notification sent.")
+
+    save_snapshot(matches)
 
 
 if __name__ == "__main__":
