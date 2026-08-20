@@ -1,20 +1,25 @@
 import os
 import sys
+import json
 import requests
 
 SERP_API_KEY = os.environ["SERP_API"]
+CONFIG_FILE = "image_search_config.json"
 
-EXCLUDED_DOMAINS = {"instagram.com"}
+
+def load_config():
+    with open(CONFIG_FILE) as f:
+        return json.load(f)
 
 
-def is_excluded(result):
+def is_excluded(result, excluded_domains):
     source = (result.get("source") or "").lower()
     link = (result.get("link") or "").lower()
     original = (result.get("original") or "").lower()
-    return any(domain in source or domain in link or domain in original for domain in EXCLUDED_DOMAINS)
+    return any(domain in source or domain in link or domain in original for domain in excluded_domains)
 
 
-def search_images(query, num_results=10):
+def search_images(query, excluded_domains, num_results=10):
     """Query SerpApi's Google Images engine for candidate photos."""
     params = {
         "engine": "google_images",
@@ -29,7 +34,7 @@ def search_images(query, num_results=10):
     data = resp.json()
     results = data.get("images_results", [])
 
-    return [r for r in results if not is_excluded(r)]
+    return [r for r in results if not is_excluded(r, excluded_domains)]
 
 
 def print_candidates(results):
@@ -47,11 +52,14 @@ def print_candidates(results):
 
 
 def main():
-    # Simple test query — we'll make this dynamic per-fixture later
-    query = "Manchester United match action photo"
-    print(f"Searching: {query}\n")
+    config = load_config()
+    query = config["search_query"]
+    excluded_domains = config.get("excluded_domains", [])
 
-    results = search_images(query)
+    print(f"Searching: {query}")
+    print(f"Excluding domains: {excluded_domains}\n")
+
+    results = search_images(query, excluded_domains)
     print(f"Found {len(results)} candidates")
     print_candidates(results)
 
