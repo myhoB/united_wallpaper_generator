@@ -37,18 +37,29 @@ def search_images(query, excluded_domains, num_results=10):
     return [r for r in results if not is_excluded(r, excluded_domains)]
 
 
-def print_candidates(results):
+def sort_candidates(results):
+    """Sort by resolution (width x height), descending. Most reliable signal available."""
+    return sorted(
+        results,
+        key=lambda r: (r.get("original_width") or 0) * (r.get("original_height") or 0),
+        reverse=True,
+    )
     if not results:
         print("No results returned.")
         return
 
     for i, r in enumerate(results, 1):
-        print(f"\n--- Candidate {i} ---")
+        resolution = (r.get("original_width") or 0) * (r.get("original_height") or 0)
+        print(f"\n--- Candidate {i} (resolution: {resolution:,}px) ---")
         print(f"Title:      {r.get('title')}")
         print(f"Source:     {r.get('source')}")
         print(f"Image URL:  {r.get('original')}")
         print(f"Dimensions: {r.get('original_width')}x{r.get('original_height')}")
         print(f"Page link:  {r.get('link')}")
+        # Not all results include date info — SerpApi doesn't guarantee a structured date field.
+        # Print it when present so you can eyeball recency, but don't rely on it for sorting.
+        if r.get("date"):
+            print(f"Date (if provided): {r.get('date')}")
 
 
 def main():
@@ -60,7 +71,8 @@ def main():
     print(f"Excluding domains: {excluded_domains}\n")
 
     results = search_images(query, excluded_domains)
-    print(f"Found {len(results)} candidates")
+    results = sort_candidates(results)
+    print(f"Found {len(results)} candidates (sorted by resolution, highest first)")
     print_candidates(results)
 
 
