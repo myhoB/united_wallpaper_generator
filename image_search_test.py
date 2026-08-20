@@ -4,6 +4,15 @@ import requests
 
 SERP_API_KEY = os.environ["SERP_API"]
 
+EXCLUDED_DOMAINS = {"instagram.com"}
+
+
+def is_excluded(result):
+    source = (result.get("source") or "").lower()
+    link = (result.get("link") or "").lower()
+    original = (result.get("original") or "").lower()
+    return any(domain in source or domain in link or domain in original for domain in EXCLUDED_DOMAINS)
+
 
 def search_images(query, num_results=10):
     """Query SerpApi's Google Images engine for candidate photos."""
@@ -18,7 +27,9 @@ def search_images(query, num_results=10):
     resp = requests.get("https://serpapi.com/search", params=params, timeout=30)
     resp.raise_for_status()
     data = resp.json()
-    return data.get("images_results", [])
+    results = data.get("images_results", [])
+
+    return [r for r in results if not is_excluded(r)]
 
 
 def print_candidates(results):
