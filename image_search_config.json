@@ -2,6 +2,7 @@
   "search_query": "Manchester United match action photo",
   "excluded_domains": [
     "instagram.com",
-    "facebook.com"
+    "facebook.com",
+    "tiktok.com"
   ]
 }
