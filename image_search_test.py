@@ -44,6 +44,8 @@ def sort_candidates(results):
         key=lambda r: (r.get("original_width") or 0) * (r.get("original_height") or 0),
         reverse=True,
     )
+
+def print_candidates(results):
     if not results:
         print("No results returned.")
         return
