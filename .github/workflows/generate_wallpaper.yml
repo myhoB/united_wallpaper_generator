@@ -46,7 +46,10 @@ jobs:
         run: pip install requests pillow
 
       - name: Download font
-        run: curl -L -o oswald.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/oswald/static/Oswald-SemiBold.ttf
+        run: |
+          curl -fL -o oswald.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/oswald/Oswald%5Bwght%5D.ttf"
+          # Sanity check: fail the job clearly if we somehow got an HTML error page instead of a font
+          file oswald.ttf | grep -qi "TrueType\|OpenType\|font" || (echo "Downloaded file is not a valid font!" && exit 1)
 
       - name: Generate wallpaper
         env:
