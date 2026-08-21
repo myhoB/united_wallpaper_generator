@@ -1,0 +1,39 @@
+name: Generate Fixtures JSON
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate fixtures.json
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: python generate_fixtures_json.py
+
+      - name: Commit fixtures.json if changed
+        run: |
+          if [ -n "$(git status --porcelain docs/fixtures.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/fixtures.json
+            git commit -m "Update fixtures.json for picker page"
+            git push
+          else
+            echo "No changes to commit."
+          fi
