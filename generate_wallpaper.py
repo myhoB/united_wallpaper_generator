@@ -6,7 +6,11 @@ from datetime import date
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-IMAGE_URL = os.environ["IMAGE_URL"]
+IMAGE_URL = os.environ["IMAGE_URL"].strip().strip("'\"")
+if not IMAGE_URL.startswith(("http://", "https://")):
+    print(f"ERROR: IMAGE_URL doesn't look like a valid URL: {IMAGE_URL!r}", file=sys.stderr)
+    print("If you pasted this manually, make sure it doesn't include surrounding quote marks.", file=sys.stderr)
+    sys.exit(1)
 BOX_X_PCT = float(os.environ["BOX_X_PCT"])
 BOX_Y_PCT = float(os.environ["BOX_Y_PCT"])
 BOX_W_PCT = float(os.environ["BOX_W_PCT"])
