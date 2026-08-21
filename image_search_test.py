@@ -34,7 +34,15 @@ def search_images(query, excluded_domains, num_results=10):
     data = resp.json()
     results = data.get("images_results", [])
 
-    return [r for r in results if not is_excluded(r, excluded_domains)]
+    results = [r for r in results if not is_excluded(r, excluded_domains)]
+    results = [r for r in results if not is_portrait(r)]
+    return results
+
+
+def is_portrait(result):
+    width = result.get("original_width") or 0
+    height = result.get("original_height") or 0
+    return height > width
 
 
 def sort_candidates(results):
@@ -45,18 +53,25 @@ def sort_candidates(results):
         reverse=True,
     )
 
+
 def print_candidates(results):
     if not results:
         print("No results returned.")
         return
 
     for i, r in enumerate(results, 1):
-        print(f"\n--- Candidate {i} ---")
+        resolution = (r.get("original_width") or 0) * (r.get("original_height") or 0)
+        print(f"\n--- Candidate {i} (resolution: {resolution:,}px) ---")
         print(f"Title:      {r.get('title')}")
         print(f"Source:     {r.get('source')}")
         print(f"Image URL:  {r.get('original')}")
         print(f"Dimensions: {r.get('original_width')}x{r.get('original_height')}")
         print(f"Page link:  {r.get('link')}")
+        # Not all results include date info — SerpApi doesn't guarantee a structured date field.
+        # Print it when present so you can eyeball recency, but don't rely on it for sorting.
+        if r.get("date"):
+            print(f"Date (if provided): {r.get('date')}")
+
 
 def main():
     config = load_config()
