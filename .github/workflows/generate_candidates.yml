@@ -1,0 +1,39 @@
+name: Generate Wallpaper Candidates
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate candidates.json
+        env:
+          SERP_API: ${{ secrets.SERP_API }}
+        run: python generate_candidates.py
+
+      - name: Commit candidates.json if changed
+        run: |
+          if [ -n "$(git status --porcelain docs/candidates.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/candidates.json
+            git commit -m "Update wallpaper candidates"
+            git push
+          else
+            echo "No changes to commit."
+          fi
