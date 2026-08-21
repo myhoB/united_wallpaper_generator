@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MUFC Wallpaper Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   body {
     font-family: -apple-system, system-ui, sans-serif;
@@ -110,10 +113,29 @@
   }
   #placement-box {
     position: absolute;
-    border: 2px solid #3fb950;
-    background: rgba(63, 185, 80, 0.15);
+    border: 1px dashed #58a6ff;
+    background: rgba(0, 0, 0, 0.6);
     cursor: move;
     box-sizing: border-box;
+  }
+  #fixture-text-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    box-sizing: border-box;
+  }
+  #fixture-text {
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    white-space: pre;
+    pointer-events: none;
   }
   #placement-box .resize-handle {
     position: absolute;
@@ -125,6 +147,14 @@
     border: 2px solid #0d1117;
     border-radius: 50%;
     cursor: nwse-resize;
+  }
+  .month-toggle {
+    display: flex;
+    gap: 8px;
+  }
+  .month-toggle button.active {
+    background: #1f6feb;
+    border-color: #388bfd;
   }
   .coords-readout {
     color: #8b949e;
@@ -159,11 +189,18 @@
 <div id="placement-view">
   <div class="toolbar">
     <button id="back-btn">&larr; Back to gallery</button>
+    <div class="month-toggle">
+      <button id="this-month-btn" class="active">This month</button>
+      <button id="next-month-btn">Next month</button>
+    </div>
     <button id="confirm-btn" class="primary">Confirm placement</button>
   </div>
   <div id="image-wrapper">
     <img id="placement-img" alt="Selected wallpaper candidate">
     <div id="placement-box">
+      <div id="fixture-text-wrapper">
+        <div id="fixture-text"></div>
+      </div>
       <div class="resize-handle"></div>
     </div>
   </div>
@@ -215,17 +252,92 @@ async function loadCandidates() {
 }
 
 let currentCandidate = null;
+let fixturesData = null;
+let currentMonthKey = 'this_month';
 // Box position/size stored as PERCENTAGES of the image, so it stays correct
 // regardless of how large the image is displayed on screen.
 let box = { xPct: 62, yPct: 15, wPct: 32, hPct: 55 };
+
+async function loadFixtures() {
+  try {
+    const res = await fetch('fixtures.json?t=' + Date.now());
+    if (!res.ok) throw new Error('fixtures.json not found yet');
+    fixturesData = await res.json();
+
+    if (fixturesData.this_month_label) {
+      document.getElementById('this-month-btn').textContent = fixturesData.this_month_label;
+    }
+    if (fixturesData.next_month_label) {
+      document.getElementById('next-month-btn').textContent = fixturesData.next_month_label;
+    }
+  } catch (err) {
+    console.error('Could not load fixtures.json:', err);
+    fixturesData = { this_month: [], next_month: [] };
+  }
+}
+
+function renderFixtureText(monthKey) {
+  currentMonthKey = monthKey;
+  const list = (fixturesData && fixturesData[monthKey]) || [];
+  const textEl = document.getElementById('fixture-text');
+
+  if (!list.length) {
+    textEl.textContent = 'No fixtures found for this period.';
+  } else {
+    textEl.textContent = list
+      .map(f => `${f.day_label} | ${f.competition}\n${f.home} vs. ${f.away}\ntime ${f.time_label}`)
+      .join('\n\n');
+  }
+  fitFixtureText();
+}
+
+function setActiveMonthButton(id) {
+  document.getElementById('this-month-btn').classList.remove('active');
+  document.getElementById('next-month-btn').classList.remove('active');
+  document.getElementById(id).classList.add('active');
+}
+
+document.getElementById('this-month-btn').addEventListener('click', () => {
+  setActiveMonthButton('this-month-btn');
+  renderFixtureText('this_month');
+});
+document.getElementById('next-month-btn').addEventListener('click', () => {
+  setActiveMonthButton('next-month-btn');
+  renderFixtureText('next_month');
+});
+
+function fitFixtureText() {
+  const textEl = document.getElementById('fixture-text');
+  const wrapperEl = document.getElementById('fixture-text-wrapper');
+  if (!textEl.textContent.trim() || wrapperEl.clientWidth === 0) return;
+
+  // Leave a small margin inside the padded wrapper rather than measuring exact
+  // padding pixels — good enough for a preview tool, not pixel-perfect DTP.
+  const availW = wrapperEl.clientWidth * 0.94;
+  const availH = wrapperEl.clientHeight * 0.94;
+
+  let lo = 4, hi = 300;
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi + 1) / 2);
+    textEl.style.fontSize = mid + 'px';
+    const fits = textEl.scrollWidth <= availW && textEl.scrollHeight <= availH;
+    if (fits) lo = mid; else hi = mid - 1;
+  }
+  textEl.style.fontSize = lo + 'px';
+}
+
+window.addEventListener('resize', () => {
+  if (currentCandidate) fitFixtureText();
+});
 
 function selectCandidate(card, candidate) {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   currentCandidate = candidate;
 
-  // Reset to the default right-side placement each time a new photo is chosen.
+  // Reset to the default right-side placement and "this month" view each time.
   box = { xPct: 62, yPct: 15, wPct: 32, hPct: 55 };
+  setActiveMonthButton('this-month-btn');
 
   const img = document.getElementById('placement-img');
   img.src = candidate.image_url;
@@ -234,7 +346,10 @@ function selectCandidate(card, candidate) {
   document.getElementById('placement-view').style.display = 'block';
   document.getElementById('confirm-banner').style.display = 'none';
 
-  img.onload = () => updateBoxUI();
+  img.onload = () => {
+    updateBoxUI();
+    renderFixtureText('this_month');
+  };
   updateBoxUI();
 }
 
@@ -339,6 +454,7 @@ handleEl.addEventListener('pointermove', (e) => {
   box.wPct = clamp(resizeState.startBox.wPct + dxPct, 5, 100 - box.xPct);
   box.hPct = clamp(resizeState.startBox.hPct + dyPct, 5, 100 - box.yPct);
   updateBoxUI();
+  fitFixtureText();
 });
 
 handleEl.addEventListener('pointerup', (e) => {
@@ -347,6 +463,7 @@ handleEl.addEventListener('pointerup', (e) => {
 });
 
 loadCandidates();
+loadFixtures();
 </script>
 
 </body>
