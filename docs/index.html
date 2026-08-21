@@ -131,6 +131,20 @@
     font-size: 12px;
     margin-top: 10px;
   }
+  #confirm-banner {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: rgba(63, 185, 80, 0.15);
+    border: 1px solid #2ea043;
+    border-radius: 8px;
+    color: #e6edf3;
+    font-size: 14px;
+    animation: flash-in 0.25s ease;
+  }
+  @keyframes flash-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -154,6 +168,7 @@
     </div>
   </div>
   <div class="coords-readout" id="coords-readout"></div>
+  <div id="confirm-banner" style="display:none;"></div>
 </div>
 
 <script>
@@ -217,6 +232,7 @@ function selectCandidate(card, candidate) {
 
   document.getElementById('content').style.display = 'none';
   document.getElementById('placement-view').style.display = 'block';
+  document.getElementById('confirm-banner').style.display = 'none';
 
   img.onload = () => updateBoxUI();
   updateBoxUI();
@@ -239,8 +255,18 @@ document.getElementById('confirm-btn').addEventListener('click', () => {
     },
   };
   console.log('Confirmed selection:', result);
-  document.getElementById('coords-readout').textContent =
-    'Confirmed — image and placement logged to browser console (F12) for now. Next step wires this to the generator.';
+
+  const banner = document.getElementById('confirm-banner');
+  banner.style.display = 'none';
+  // Force reflow so the flash-in animation replays on repeated clicks
+  void banner.offsetWidth;
+  banner.innerHTML =
+    `<strong>&#10003; Confirmed</strong> — image from <em>${result.source || 'unknown source'}</em>, ` +
+    `placement box at x=${result.placement.x_pct}% y=${result.placement.y_pct}% ` +
+    `(${result.placement.width_pct}% &times; ${result.placement.height_pct}%).<br>` +
+    `Full details logged to the browser console (press F12, then check the Console tab). ` +
+    `The next build step will wire this button to actually generate the wallpaper.`;
+  banner.style.display = 'block';
 });
 
 function updateBoxUI() {
