@@ -64,6 +64,73 @@
   .error {
     color: #f85149;
   }
+
+  #placement-view {
+    display: none;
+  }
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  button {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: #58a6ff;
+  }
+  button.primary {
+    background: #238636;
+    border-color: #2ea043;
+  }
+  button.primary:hover {
+    background: #2ea043;
+  }
+  #image-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+    user-select: none;
+    touch-action: none;
+  }
+  #image-wrapper img {
+    display: block;
+    width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    background: #000;
+  }
+  #placement-box {
+    position: absolute;
+    border: 2px solid #3fb950;
+    background: rgba(63, 185, 80, 0.15);
+    cursor: move;
+    box-sizing: border-box;
+  }
+  #placement-box .resize-handle {
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+    width: 16px;
+    height: 16px;
+    background: #3fb950;
+    border: 2px solid #0d1117;
+    border-radius: 50%;
+    cursor: nwse-resize;
+  }
+  .coords-readout {
+    color: #8b949e;
+    font-size: 12px;
+    margin-top: 10px;
+  }
 </style>
 </head>
 <body>
@@ -73,6 +140,20 @@
 
 <div id="content">
   <div class="status">Loading candidates…</div>
+</div>
+
+<div id="placement-view">
+  <div class="toolbar">
+    <button id="back-btn">&larr; Back to gallery</button>
+    <button id="confirm-btn" class="primary">Confirm placement</button>
+  </div>
+  <div id="image-wrapper">
+    <img id="placement-img" alt="Selected wallpaper candidate">
+    <div id="placement-box">
+      <div class="resize-handle"></div>
+    </div>
+  </div>
+  <div class="coords-readout" id="coords-readout"></div>
 </div>
 
 <script>
@@ -118,16 +199,126 @@ async function loadCandidates() {
   }
 }
 
+let currentCandidate = null;
+// Box position/size stored as PERCENTAGES of the image, so it stays correct
+// regardless of how large the image is displayed on screen.
+let box = { xPct: 62, yPct: 15, wPct: 32, hPct: 55 };
+
 function selectCandidate(card, candidate) {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
-  console.log('Selected candidate:', candidate);
+  currentCandidate = candidate;
 
-  if (candidate.image_url) {
-    window.open(candidate.image_url, '_blank', 'noopener,noreferrer');
-  }
-  // Next step: this is where placement adjustment will open.
+  // Reset to the default right-side placement each time a new photo is chosen.
+  box = { xPct: 62, yPct: 15, wPct: 32, hPct: 55 };
+
+  const img = document.getElementById('placement-img');
+  img.src = candidate.image_url;
+
+  document.getElementById('content').style.display = 'none';
+  document.getElementById('placement-view').style.display = 'block';
+
+  img.onload = () => updateBoxUI();
+  updateBoxUI();
 }
+
+document.getElementById('back-btn').addEventListener('click', () => {
+  document.getElementById('placement-view').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+});
+
+document.getElementById('confirm-btn').addEventListener('click', () => {
+  const result = {
+    image_url: currentCandidate.image_url,
+    source: currentCandidate.source,
+    placement: {
+      x_pct: Math.round(box.xPct * 10) / 10,
+      y_pct: Math.round(box.yPct * 10) / 10,
+      width_pct: Math.round(box.wPct * 10) / 10,
+      height_pct: Math.round(box.hPct * 10) / 10,
+    },
+  };
+  console.log('Confirmed selection:', result);
+  document.getElementById('coords-readout').textContent =
+    'Confirmed — image and placement logged to browser console (F12) for now. Next step wires this to the generator.';
+});
+
+function updateBoxUI() {
+  const boxEl = document.getElementById('placement-box');
+  boxEl.style.left = box.xPct + '%';
+  boxEl.style.top = box.yPct + '%';
+  boxEl.style.width = box.wPct + '%';
+  boxEl.style.height = box.hPct + '%';
+  document.getElementById('coords-readout').textContent =
+    `Box: x=${box.xPct.toFixed(1)}% y=${box.yPct.toFixed(1)}% w=${box.wPct.toFixed(1)}% h=${box.hPct.toFixed(1)}%`;
+}
+
+function clamp(val, min, max) {
+  return Math.max(min, Math.min(max, val));
+}
+
+// --- Drag to move ---
+const boxEl = document.getElementById('placement-box');
+const wrapperEl = document.getElementById('image-wrapper');
+let dragState = null;
+
+boxEl.addEventListener('pointerdown', (e) => {
+  if (e.target.classList.contains('resize-handle')) return; // handled separately
+  e.preventDefault();
+  boxEl.setPointerCapture(e.pointerId);
+  dragState = {
+    startX: e.clientX,
+    startY: e.clientY,
+    startBox: { ...box },
+    wrapperRect: wrapperEl.getBoundingClientRect(),
+  };
+});
+
+boxEl.addEventListener('pointermove', (e) => {
+  if (!dragState) return;
+  const dxPct = ((e.clientX - dragState.startX) / dragState.wrapperRect.width) * 100;
+  const dyPct = ((e.clientY - dragState.startY) / dragState.wrapperRect.height) * 100;
+
+  box.xPct = clamp(dragState.startBox.xPct + dxPct, 0, 100 - box.wPct);
+  box.yPct = clamp(dragState.startBox.yPct + dyPct, 0, 100 - box.hPct);
+  updateBoxUI();
+});
+
+boxEl.addEventListener('pointerup', (e) => {
+  dragState = null;
+  boxEl.releasePointerCapture(e.pointerId);
+});
+
+// --- Resize via corner handle ---
+const handleEl = document.querySelector('#placement-box .resize-handle');
+let resizeState = null;
+
+handleEl.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  handleEl.setPointerCapture(e.pointerId);
+  resizeState = {
+    startX: e.clientX,
+    startY: e.clientY,
+    startBox: { ...box },
+    wrapperRect: wrapperEl.getBoundingClientRect(),
+  };
+});
+
+handleEl.addEventListener('pointermove', (e) => {
+  if (!resizeState) return;
+  const dxPct = ((e.clientX - resizeState.startX) / resizeState.wrapperRect.width) * 100;
+  const dyPct = ((e.clientY - resizeState.startY) / resizeState.wrapperRect.height) * 100;
+
+  box.wPct = clamp(resizeState.startBox.wPct + dxPct, 5, 100 - box.xPct);
+  box.hPct = clamp(resizeState.startBox.hPct + dyPct, 5, 100 - box.yPct);
+  updateBoxUI();
+});
+
+handleEl.addEventListener('pointerup', (e) => {
+  resizeState = null;
+  handleEl.releasePointerCapture(e.pointerId);
+});
 
 loadCandidates();
 </script>
