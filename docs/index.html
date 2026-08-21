@@ -59,6 +59,27 @@
     color: #e6edf3;
     font-weight: 600;
   }
+  .badges {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .badge.ok {
+    background: rgba(63, 185, 80, 0.2);
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.4);
+  }
+  .badge.no {
+    background: rgba(139, 148, 158, 0.15);
+    color: #6e7681;
+    border: 1px solid rgba(139, 148, 158, 0.25);
+  }
   .status {
     color: #8b949e;
     padding: 40px 0;
@@ -209,6 +230,35 @@
 </div>
 
 <script>
+// A photo "cleanly" supports a resolution if its height already meets or
+// exceeds that resolution's height — otherwise hitting that target means
+// upscaling, which loses quality. All three target resolutions share a
+// 16:9 aspect ratio, so height alone is a reliable proxy here.
+const RESOLUTIONS = [
+  { label: '1080p', height: 1080 },
+  { label: '1440p', height: 1440 },
+  { label: '4K', height: 2160 },
+];
+
+function buildBadges(candidate) {
+  const wrap = document.createElement('div');
+  wrap.className = 'badges';
+  const imgHeight = candidate.height || 0;
+
+  RESOLUTIONS.forEach(res => {
+    const badge = document.createElement('span');
+    const supported = imgHeight >= res.height;
+    badge.className = 'badge ' + (supported ? 'ok' : 'no');
+    badge.textContent = (supported ? '\u2713 ' : '\u2717 ') + res.label;
+    badge.title = supported
+      ? `${res.label} (${res.height}px) — native quality, no upscaling needed`
+      : `${res.label} (${res.height}px) — would need upscaling, lower quality`;
+    wrap.appendChild(badge);
+  });
+
+  return wrap;
+}
+
 async function loadCandidates() {
   const content = document.getElementById('content');
   try {
@@ -236,6 +286,7 @@ async function loadCandidates() {
       const info = document.createElement('div');
       info.className = 'card-info';
       info.innerHTML = `<span class="source">${c.source || 'Unknown'}</span><br>${c.width}×${c.height}`;
+      info.appendChild(buildBadges(c));
 
       card.appendChild(img);
       card.appendChild(info);
