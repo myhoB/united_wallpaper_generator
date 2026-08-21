@@ -192,9 +192,40 @@
     font-size: 14px;
     animation: flash-in 0.25s ease;
   }
+  #confirm-banner.working {
+    background: rgba(88, 166, 255, 0.12);
+    border-color: #388bfd;
+  }
+  #confirm-banner.failed {
+    background: rgba(248, 81, 73, 0.12);
+    border-color: #f85149;
+  }
   @keyframes flash-in {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+  .token-bar {
+    font-size: 12px;
+    color: #8b949e;
+    margin-bottom: 16px;
+  }
+  .token-bar a {
+    color: #58a6ff;
+    cursor: pointer;
+  }
+  .spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 </style>
 </head>
@@ -202,6 +233,7 @@
 
 <h1>MUFC Wallpaper Picker</h1>
 <p class="subtitle">Click a photo to select it as your wallpaper base.</p>
+<div class="token-bar" id="token-bar"></div>
 
 <div id="content">
   <div class="status">Loading candidates…</div>
@@ -409,30 +441,186 @@ document.getElementById('back-btn').addEventListener('click', () => {
   document.getElementById('content').style.display = 'block';
 });
 
-document.getElementById('confirm-btn').addEventListener('click', () => {
-  const result = {
-    image_url: currentCandidate.image_url,
-    source: currentCandidate.source,
-    placement: {
-      x_pct: Math.round(box.xPct * 10) / 10,
-      y_pct: Math.round(box.yPct * 10) / 10,
-      width_pct: Math.round(box.wPct * 10) / 10,
-      height_pct: Math.round(box.hPct * 10) / 10,
-    },
-  };
-  console.log('Confirmed selection:', result);
+// --- GitHub repo config ---
+const REPO_OWNER = 'myhoB';
+const REPO_NAME = 'united_wallpaper_generator';
+const WORKFLOW_FILE = 'generate_wallpaper.yml';
+const TOKEN_KEY = 'mufc_wallpaper_gh_token';
 
+function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+function setToken(token) {
+  localStorage.setItem(TOKEN_KEY, token.trim());
+  renderTokenBar();
+}
+
+function clearToken() {
+  localStorage.removeItem(TOKEN_KEY);
+  renderTokenBar();
+}
+
+function renderTokenBar() {
+  const bar = document.getElementById('token-bar');
+  const token = getToken();
+  if (token) {
+    bar.innerHTML = `GitHub token set (${token.slice(0, 4)}…${token.slice(-4)}) — <a id="clear-token-link">clear</a>`;
+    document.getElementById('clear-token-link').addEventListener('click', clearToken);
+  } else {
+    bar.innerHTML = `<a id="set-token-link">Set GitHub token</a> (needed once, to generate wallpapers — stored only in this browser, never in the repo)`;
+    document.getElementById('set-token-link').addEventListener('click', promptForToken);
+  }
+}
+
+function promptForToken() {
+  const token = prompt(
+    'Paste a GitHub fine-grained personal access token, scoped to just this repo with "Actions: Read and write" permission.\n\n' +
+    'It is stored only in this browser (localStorage) and is never written into the repo.'
+  );
+  if (token && token.trim()) {
+    setToken(token);
+  }
+}
+
+renderTokenBar();
+
+function ghHeaders(token) {
+  return {
+    'Authorization': 'Bearer ' + token,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+}
+
+function getExpectedFilename(monthKey) {
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1; // JS months are 0-indexed
+  if (monthKey === 'next_month') {
+    month += 1;
+    if (month > 12) { month = 1; year += 1; }
+  }
+  const abbrs = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  return `${abbrs[month - 1]}${year}.png`;
+}
+
+function setBanner(state, html) {
   const banner = document.getElementById('confirm-banner');
+  banner.className = state; // '', 'working', or 'failed'
   banner.style.display = 'none';
-  // Force reflow so the flash-in animation replays on repeated clicks
-  void banner.offsetWidth;
-  banner.innerHTML =
-    `<strong>&#10003; Confirmed</strong> — image from <em>${result.source || 'unknown source'}</em>, ` +
-    `placement box at x=${result.placement.x_pct}% y=${result.placement.y_pct}% ` +
-    `(${result.placement.width_pct}% &times; ${result.placement.height_pct}%).<br>` +
-    `Full details logged to the browser console (press F12, then check the Console tab). ` +
-    `The next build step will wire this button to actually generate the wallpaper.`;
+  void banner.offsetWidth; // restart the flash-in animation
+  banner.innerHTML = html;
   banner.style.display = 'block';
+}
+
+function downloadFile(url, filename) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+async function pollForRunId(token, dispatchedAt, attempts = 15) {
+  const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=5`;
+  for (let i = 0; i < attempts; i++) {
+    const res = await fetch(url, { headers: ghHeaders(token) });
+    if (res.ok) {
+      const data = await res.json();
+      const match = (data.workflow_runs || []).find(r => new Date(r.created_at).getTime() >= dispatchedAt - 5000);
+      if (match) return match.id;
+    }
+    await new Promise(r => setTimeout(r, 2000));
+  }
+  return null;
+}
+
+async function pollRunStatus(token, runId, attempts = 60) {
+  const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runs/${runId}`;
+  for (let i = 0; i < attempts; i++) {
+    const res = await fetch(url, { headers: ghHeaders(token) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.status === 'completed') return data.conclusion; // 'success', 'failure', etc.
+    }
+    await new Promise(r => setTimeout(r, 3000));
+  }
+  return 'timeout';
+}
+
+document.getElementById('confirm-btn').addEventListener('click', async () => {
+  const token = getToken();
+  if (!token) {
+    promptForToken();
+    if (!getToken()) return; // user cancelled the prompt
+  }
+
+  const placement = {
+    x_pct: Math.round(box.xPct * 10) / 10,
+    y_pct: Math.round(box.yPct * 10) / 10,
+    width_pct: Math.round(box.wPct * 10) / 10,
+    height_pct: Math.round(box.hPct * 10) / 10,
+  };
+
+  setBanner('working', `<span class="spinner"></span>Triggering wallpaper generation…`);
+
+  const dispatchedAt = Date.now();
+  const dispatchRes = await fetch(
+    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_FILE}/dispatches`,
+    {
+      method: 'POST',
+      headers: { ...ghHeaders(token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          image_url: currentCandidate.image_url,
+          box_x_pct: String(placement.x_pct),
+          box_y_pct: String(placement.y_pct),
+          box_w_pct: String(placement.width_pct),
+          box_h_pct: String(placement.height_pct),
+          month_key: currentMonthKey,
+        },
+      }),
+    }
+  );
+
+  if (!dispatchRes.ok) {
+    const msg = dispatchRes.status === 401 || dispatchRes.status === 403
+      ? 'Token was rejected — it may be invalid, expired, or missing the right permissions. Click "clear" above and set a new one.'
+      : `GitHub API returned ${dispatchRes.status}.`;
+    setBanner('failed', `<strong>&#10007; Couldn't start generation.</strong> ${msg}`);
+    return;
+  }
+
+  setBanner('working', `<span class="spinner"></span>Workflow triggered — waiting for it to start…`);
+
+  const runId = await pollForRunId(token, dispatchedAt);
+  if (!runId) {
+    setBanner('failed',
+      `<strong>&#10007; Triggered, but couldn't find the run.</strong> Check the ` +
+      `<a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/actions" target="_blank">Actions tab</a> manually.`);
+    return;
+  }
+
+  setBanner('working', `<span class="spinner"></span>Generating wallpaper — this usually takes under a minute…`);
+
+  const conclusion = await pollRunStatus(token, runId);
+
+  if (conclusion !== 'success') {
+    setBanner('failed',
+      `<strong>&#10007; Generation ${conclusion === 'timeout' ? 'timed out' : 'failed'}.</strong> Check the ` +
+      `<a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/actions/runs/${runId}" target="_blank">run log</a> for details.`);
+    return;
+  }
+
+  const filename = getExpectedFilename(currentMonthKey);
+  const fileUrl = `output/${filename}?t=${Date.now()}`;
+
+  setBanner('working', `<span class="spinner"></span>Done — starting download…`);
+  downloadFile(fileUrl, filename);
+  setBanner('', `<strong>&#10003; Downloaded ${filename}</strong> — check your browser's downloads.`);
 });
 
 function updateBoxUI() {
