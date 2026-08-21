@@ -122,6 +122,10 @@ function selectCandidate(card, candidate) {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   console.log('Selected candidate:', candidate);
+
+  if (candidate.image_url) {
+    window.open(candidate.image_url, '_blank', 'noopener,noreferrer');
+  }
   // Next step: this is where placement adjustment will open.
 }
 
