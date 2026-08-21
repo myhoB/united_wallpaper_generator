@@ -117,9 +117,10 @@ def main():
         align="center", spacing=int(font.size * 0.3),
     )
 
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    img.save(OUTPUT_FILE)
-    print(f"Saved wallpaper to {OUTPUT_FILE}")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    output_path = os.path.join(OUTPUT_DIR, get_output_filename())
+    img.save(output_path)
+    print(f"Saved wallpaper to {output_path}")
 
 
 if __name__ == "__main__":
