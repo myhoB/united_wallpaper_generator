@@ -1,0 +1,67 @@
+name: Generate Wallpaper
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: 'Direct URL of the chosen photo'
+        required: true
+      box_x_pct:
+        description: 'Box left position (% of image width)'
+        required: true
+      box_y_pct:
+        description: 'Box top position (% of image height)'
+        required: true
+      box_w_pct:
+        description: 'Box width (% of image width)'
+        required: true
+      box_h_pct:
+        description: 'Box height (% of image height)'
+        required: true
+      month_key:
+        description: 'Which fixtures to overlay'
+        required: true
+        default: 'this_month'
+        type: choice
+        options:
+          - this_month
+          - next_month
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pillow
+
+      - name: Download font
+        run: curl -L -o oswald.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/oswald/static/Oswald-SemiBold.ttf
+
+      - name: Generate wallpaper
+        env:
+          IMAGE_URL: ${{ inputs.image_url }}
+          BOX_X_PCT: ${{ inputs.box_x_pct }}
+          BOX_Y_PCT: ${{ inputs.box_y_pct }}
+          BOX_W_PCT: ${{ inputs.box_w_pct }}
+          BOX_H_PCT: ${{ inputs.box_h_pct }}
+          MONTH_KEY: ${{ inputs.month_key }}
+        run: python generate_wallpaper.py
+
+      - name: Commit generated wallpaper
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/output/wallpaper.png
+          git commit -m "Generate wallpaper" || echo "Nothing to commit"
+          git push
