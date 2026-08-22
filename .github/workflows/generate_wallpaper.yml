@@ -7,16 +7,34 @@ on:
         description: 'Direct URL of the chosen photo'
         required: true
       box_x_pct:
-        description: 'Box left position (% of image width)'
+        description: 'Text box left position (% of final canvas width)'
         required: true
       box_y_pct:
-        description: 'Box top position (% of image height)'
+        description: 'Text box top position (% of final canvas height)'
         required: true
       box_w_pct:
-        description: 'Box width (% of image width)'
+        description: 'Text box width (% of final canvas width)'
         required: true
       box_h_pct:
-        description: 'Box height (% of image height)'
+        description: 'Text box height (% of final canvas height)'
+        required: true
+      crop_x_pct:
+        description: 'Visible frame left, as % of source image width (can be negative)'
+        required: true
+      crop_y_pct:
+        description: 'Visible frame top, as % of source image height (can be negative)'
+        required: true
+      crop_w_pct:
+        description: 'Visible frame width, as % of source image width'
+        required: true
+      crop_h_pct:
+        description: 'Visible frame height, as % of source image height'
+        required: true
+      target_width:
+        description: 'Output width in pixels'
+        required: true
+      target_height:
+        description: 'Output height in pixels'
         required: true
       month_key:
         description: 'Which fixtures to overlay'
@@ -58,6 +76,12 @@ jobs:
           BOX_Y_PCT: ${{ inputs.box_y_pct }}
           BOX_W_PCT: ${{ inputs.box_w_pct }}
           BOX_H_PCT: ${{ inputs.box_h_pct }}
+          CROP_X_PCT: ${{ inputs.crop_x_pct }}
+          CROP_Y_PCT: ${{ inputs.crop_y_pct }}
+          CROP_W_PCT: ${{ inputs.crop_w_pct }}
+          CROP_H_PCT: ${{ inputs.crop_h_pct }}
+          TARGET_WIDTH: ${{ inputs.target_width }}
+          TARGET_HEIGHT: ${{ inputs.target_height }}
           MONTH_KEY: ${{ inputs.month_key }}
         run: python generate_wallpaper.py
 
