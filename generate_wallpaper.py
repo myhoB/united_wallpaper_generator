@@ -11,10 +11,24 @@ if not IMAGE_URL.startswith(("http://", "https://")):
     print(f"ERROR: IMAGE_URL doesn't look like a valid URL: {IMAGE_URL!r}", file=sys.stderr)
     print("If you pasted this manually, make sure it doesn't include surrounding quote marks.", file=sys.stderr)
     sys.exit(1)
+
 BOX_X_PCT = float(os.environ["BOX_X_PCT"])
 BOX_Y_PCT = float(os.environ["BOX_Y_PCT"])
 BOX_W_PCT = float(os.environ["BOX_W_PCT"])
 BOX_H_PCT = float(os.environ["BOX_H_PCT"])
+
+# Crop percentages describe what part of the SOURCE image is visible inside the
+# 16:9 viewport frame. These can be negative or exceed 100 — that represents
+# black bars (the frame extends beyond the photo's edges), matching what the
+# picker page shows live in the browser.
+CROP_X_PCT = float(os.environ["CROP_X_PCT"])
+CROP_Y_PCT = float(os.environ["CROP_Y_PCT"])
+CROP_W_PCT = float(os.environ["CROP_W_PCT"])
+CROP_H_PCT = float(os.environ["CROP_H_PCT"])
+
+TARGET_WIDTH = int(os.environ["TARGET_WIDTH"])
+TARGET_HEIGHT = int(os.environ["TARGET_HEIGHT"])
+
 MONTH_KEY = os.environ.get("MONTH_KEY", "this_month")
 
 FIXTURES_FILE = "docs/fixtures.json"
@@ -62,14 +76,48 @@ def download_image(url):
     return Image.open("source_image.tmp").convert("RGB")
 
 
+def build_cropped_canvas(source_img):
+    """
+    Crop (and/or pad with black) the source image to exactly what the picker's
+    16:9 frame showed, then resize that to the chosen output resolution.
+    """
+    src_w, src_h = source_img.size
+
+    crop_x_px = CROP_X_PCT / 100 * src_w
+    crop_y_px = CROP_Y_PCT / 100 * src_h
+    crop_w_px = CROP_W_PCT / 100 * src_w
+    crop_h_px = CROP_H_PCT / 100 * src_h
+
+    canvas = Image.new("RGB", (max(1, round(crop_w_px)), max(1, round(crop_h_px))), (0, 0, 0))
+    # Paste position: where the source image's (0,0) lands on the new canvas.
+    # PIL clips automatically if this extends outside the canvas bounds — exactly
+    # the padding/cropping behavior we want, no manual bounds-checking needed.
+    paste_x = round(-crop_x_px)
+    paste_y = round(-crop_y_px)
+    canvas.paste(source_img, (paste_x, paste_y))
+
+    return canvas.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.LANCZOS)
+
+
+def load_font(path, size):
+    font = ImageFont.truetype(path, size)
+    try:
+        # Oswald is distributed as a single variable font with a 'wght' axis.
+        # 600 ≈ SemiBold, matching the frontend's font-weight: 600.
+        font.set_variation_by_axes([600])
+    except Exception:
+        pass  # not a variable font (or unsupported) — fall back to default weight
+    return font
+
+
 def fit_text_size(draw, text, max_width, max_height, font_path):
     """Binary search the largest font size where the text fits within the box."""
     lo, hi = 4, 300
-    best_font = ImageFont.truetype(font_path, lo)
+    best_font = load_font(font_path, lo)
 
     while lo < hi:
         mid = (lo + hi + 1) // 2
-        font = ImageFont.truetype(font_path, mid)
+        font = load_font(font_path, mid)
         bbox = draw.multiline_textbbox((0, 0), text, font=font, align="center", spacing=int(mid * 0.3))
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
@@ -85,9 +133,14 @@ def fit_text_size(draw, text, max_width, max_height, font_path):
 
 def main():
     print(f"Downloading source image: {IMAGE_URL}")
-    img = download_image(IMAGE_URL)
-    img_w, img_h = img.size
-    print(f"Image size: {img_w}x{img_h}")
+    source_img = download_image(IMAGE_URL)
+    print(f"Source size: {source_img.size[0]}x{source_img.size[1]}")
+
+    print(f"Cropping to frame ({CROP_X_PCT}%, {CROP_Y_PCT}%, {CROP_W_PCT}%, {CROP_H_PCT}%) "
+          f"and resizing to {TARGET_WIDTH}x{TARGET_HEIGHT}")
+    img = build_cropped_canvas(source_img)
+
+    img_w, img_h = img.size  # now equals TARGET_WIDTH x TARGET_HEIGHT
 
     box_x = BOX_X_PCT / 100 * img_w
     box_y = BOX_Y_PCT / 100 * img_h
