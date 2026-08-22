@@ -6,7 +6,7 @@ import requests
 SERP_API_KEY = os.environ["SERP_API"]
 CONFIG_FILE = "image_search_config.json"
 OUTPUT_FILE = "docs/candidates.json"
-MAX_CANDIDATES = 12
+MAX_CANDIDATES = 30
 
 
 def load_config():
