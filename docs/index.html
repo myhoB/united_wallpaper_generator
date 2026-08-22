@@ -10,7 +10,7 @@
 <style>
   body {
     font-family: -apple-system, system-ui, sans-serif;
-    background: #0d1117;
+    background: #161b22;
     color: #e6edf3;
     margin: 0;
     padding: 24px;
@@ -117,20 +117,63 @@
   button.primary:hover {
     background: #2ea043;
   }
-  #image-wrapper {
+  #viewport-frame {
     position: relative;
-    display: inline-block;
-    max-width: 100%;
-    line-height: 0;
-    user-select: none;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 1px solid #30363d;
+    border-radius: 4px;
     touch-action: none;
   }
-  #image-wrapper img {
-    display: block;
-    width: 100%;
-    max-height: 75vh;
-    object-fit: contain;
-    background: #000;
+  #crop-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: 0 0;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  #crop-img.dragging {
+    cursor: grabbing;
+  }
+  .zoom-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 960px;
+    margin: 12px auto 0;
+  }
+  .zoom-row label {
+    font-size: 12px;
+    color: #8b949e;
+    white-space: nowrap;
+  }
+  #zoom-slider {
+    flex: 1;
+  }
+  #res-indicator {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  #res-indicator.tier-4k {
+    background: rgba(63, 185, 80, 0.2);
+    color: #3fb950;
+  }
+  #res-indicator.tier-1440p {
+    background: rgba(210, 153, 34, 0.2);
+    color: #d29922;
+  }
+  #res-indicator.tier-1080p {
+    background: rgba(139, 148, 158, 0.2);
+    color: #8b949e;
   }
   #placement-box {
     position: absolute;
@@ -248,14 +291,19 @@
     </div>
     <button id="confirm-btn" class="primary">Confirm placement</button>
   </div>
-  <div id="image-wrapper">
-    <img id="placement-img" alt="Selected wallpaper candidate">
+  <div id="viewport-frame">
+    <img id="crop-img" alt="Selected wallpaper candidate">
     <div id="placement-box">
       <div id="fixture-text-wrapper">
         <div id="fixture-text"></div>
       </div>
       <div class="resize-handle"></div>
     </div>
+  </div>
+  <div class="zoom-row">
+    <label for="zoom-slider">Zoom</label>
+    <input type="range" id="zoom-slider" min="0" max="1000" value="500">
+    <span id="res-indicator"></span>
   </div>
   <div class="coords-readout" id="coords-readout"></div>
   <div id="confirm-banner" style="display:none;"></div>
@@ -409,8 +457,112 @@ function fitFixtureText() {
   textEl.style.fontSize = lo + 'px';
 }
 
+// --- Crop/zoom/pan state ---
+// Image is positioned within the fixed 16:9 viewport via left/top (px) + scale.
+// "Cover" scale = smallest scale where the image fully covers the frame with no gaps;
+// this is just the DEFAULT starting point — the user can zoom out further to
+// intentionally reveal black bars, per their own choice.
+let crop = { scale: 1, leftPx: 0, topPx: 0, naturalW: 0, naturalH: 0 };
+const RES_TIERS = [
+  { key: '4k', label: '4K', width: 3840, height: 2160 },
+  { key: '1440p', label: '1440p', width: 2560, height: 1440 },
+  { key: '1080p', label: '1080p', width: 1920, height: 1080 },
+];
+
+function getViewportRect() {
+  return document.getElementById('viewport-frame').getBoundingClientRect();
+}
+
+function computeCoverScale() {
+  const rect = getViewportRect();
+  return Math.max(rect.width / crop.naturalW, rect.height / crop.naturalH);
+}
+
+function applyCropTransform() {
+  const img = document.getElementById('crop-img');
+  img.style.width = (crop.naturalW * crop.scale) + 'px';
+  img.style.height = (crop.naturalH * crop.scale) + 'px';
+  img.style.left = crop.leftPx + 'px';
+  img.style.top = crop.topPx + 'px';
+  updateResIndicator();
+}
+
+function updateResIndicator() {
+  const rect = getViewportRect();
+  // How many real source pixels currently span the frame's height at this zoom.
+  const effectiveSourceHeight = rect.height / crop.scale;
+  const tier = pickResolutionTier(effectiveSourceHeight);
+
+  const el = document.getElementById('res-indicator');
+  el.className = 'tier-' + tier.key;
+  el.textContent = `Exporting at: ${tier.label}`;
+}
+
+function pickResolutionTier(effectiveSourceHeight) {
+  for (const tier of RES_TIERS) {
+    if (effectiveSourceHeight >= tier.height) return tier;
+  }
+  return RES_TIERS[RES_TIERS.length - 1]; // fall back to smallest tier (1080p)
+}
+
+function resetCropForCandidate() {
+  const rect = getViewportRect();
+  crop.scale = computeCoverScale();
+  crop.leftPx = (rect.width - crop.naturalW * crop.scale) / 2;
+  crop.topPx = (rect.height - crop.naturalH * crop.scale) / 2;
+  document.getElementById('zoom-slider').value = 500; // midpoint = cover scale
+  applyCropTransform();
+}
+
+// Zoom slider maps 0–1000 to a scale range around the cover scale, centered at 500.
+function zoomSliderToScale(sliderVal) {
+  const coverScale = computeCoverScale();
+  const minScale = coverScale * 0.4;
+  const maxScale = coverScale * 4;
+  const t = sliderVal / 1000; // 0..1
+  // Exponential interpolation feels more natural for zoom than linear
+  return minScale * Math.pow(maxScale / minScale, t);
+}
+
+document.getElementById('zoom-slider').addEventListener('input', (e) => {
+  const rect = getViewportRect();
+  const centerXPct = (rect.width / 2 - crop.leftPx) / (crop.naturalW * crop.scale);
+  const centerYPct = (rect.height / 2 - crop.topPx) / (crop.naturalH * crop.scale);
+
+  crop.scale = zoomSliderToScale(Number(e.target.value));
+
+  // Keep the same image point centered in the frame as zoom changes
+  crop.leftPx = rect.width / 2 - centerXPct * crop.naturalW * crop.scale;
+  crop.topPx = rect.height / 2 - centerYPct * crop.naturalH * crop.scale;
+  applyCropTransform();
+});
+
+// --- Drag to pan the image within the frame ---
+const cropImgEl = document.getElementById('crop-img');
+let panState = null;
+
+cropImgEl.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+  cropImgEl.classList.add('dragging');
+  cropImgEl.setPointerCapture(e.pointerId);
+  panState = { startX: e.clientX, startY: e.clientY, startLeft: crop.leftPx, startTop: crop.topPx };
+});
+
+cropImgEl.addEventListener('pointermove', (e) => {
+  if (!panState) return;
+  crop.leftPx = panState.startLeft + (e.clientX - panState.startX);
+  crop.topPx = panState.startTop + (e.clientY - panState.startY);
+  applyCropTransform();
+});
+
+cropImgEl.addEventListener('pointerup', (e) => {
+  panState = null;
+  cropImgEl.classList.remove('dragging');
+  cropImgEl.releasePointerCapture(e.pointerId);
+});
+
 window.addEventListener('resize', () => {
-  if (currentCandidate) fitFixtureText();
+  if (currentCandidate) { applyCropTransform(); fitFixtureText(); }
 });
 
 function selectCandidate(card, candidate) {
@@ -422,7 +574,7 @@ function selectCandidate(card, candidate) {
   box = { xPct: 62, yPct: 15, wPct: 32, hPct: 55 };
   setActiveMonthButton('this-month-btn');
 
-  const img = document.getElementById('placement-img');
+  const img = document.getElementById('crop-img');
   img.src = candidate.image_url;
 
   document.getElementById('content').style.display = 'none';
@@ -430,6 +582,9 @@ function selectCandidate(card, candidate) {
   document.getElementById('confirm-banner').style.display = 'none';
 
   img.onload = () => {
+    crop.naturalW = img.naturalWidth;
+    crop.naturalH = img.naturalHeight;
+    resetCropForCandidate();
     updateBoxUI();
     renderFixtureText('this_month');
   };
@@ -550,6 +705,34 @@ async function pollRunStatus(token, runId, attempts = 60) {
   return 'timeout';
 }
 
+function computeCropAndResolution() {
+  const rect = getViewportRect();
+  const displayedW = crop.naturalW * crop.scale;
+  const displayedH = crop.naturalH * crop.scale;
+
+  // Express what's visible in the frame as percentages of the SOURCE image's
+  // own dimensions. Can be negative or exceed 100 — that represents black bars
+  // (frame extends beyond the image), which the backend will pad with black,
+  // matching what's shown live in the browser.
+  const cropXPct = (-crop.leftPx / displayedW) * 100;
+  const cropYPct = (-crop.topPx / displayedH) * 100;
+  const cropWPct = (rect.width / displayedW) * 100;
+  const cropHPct = (rect.height / displayedH) * 100;
+
+  const effectiveSourceHeight = rect.height / crop.scale;
+  const tier = pickResolutionTier(effectiveSourceHeight);
+
+  return {
+    crop: {
+      x_pct: Math.round(cropXPct * 100) / 100,
+      y_pct: Math.round(cropYPct * 100) / 100,
+      w_pct: Math.round(cropWPct * 100) / 100,
+      h_pct: Math.round(cropHPct * 100) / 100,
+    },
+    tier,
+  };
+}
+
 document.getElementById('confirm-btn').addEventListener('click', async () => {
   const token = getToken();
   if (!token) {
@@ -563,8 +746,9 @@ document.getElementById('confirm-btn').addEventListener('click', async () => {
     width_pct: Math.round(box.wPct * 10) / 10,
     height_pct: Math.round(box.hPct * 10) / 10,
   };
+  const { crop: cropRect, tier } = computeCropAndResolution();
 
-  setBanner('working', `<span class="spinner"></span>Triggering wallpaper generation…`);
+  setBanner('working', `<span class="spinner"></span>Triggering wallpaper generation (${tier.label})…`);
 
   const dispatchedAt = Date.now();
   const dispatchRes = await fetch(
@@ -580,6 +764,12 @@ document.getElementById('confirm-btn').addEventListener('click', async () => {
           box_y_pct: String(placement.y_pct),
           box_w_pct: String(placement.width_pct),
           box_h_pct: String(placement.height_pct),
+          crop_x_pct: String(cropRect.x_pct),
+          crop_y_pct: String(cropRect.y_pct),
+          crop_w_pct: String(cropRect.w_pct),
+          crop_h_pct: String(cropRect.h_pct),
+          target_width: String(tier.width),
+          target_height: String(tier.height),
           month_key: currentMonthKey,
         },
       }),
@@ -639,7 +829,7 @@ function clamp(val, min, max) {
 
 // --- Drag to move ---
 const boxEl = document.getElementById('placement-box');
-const wrapperEl = document.getElementById('image-wrapper');
+const wrapperEl = document.getElementById('viewport-frame');
 let dragState = null;
 
 boxEl.addEventListener('pointerdown', (e) => {
