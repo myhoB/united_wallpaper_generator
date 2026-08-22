@@ -33,7 +33,7 @@ def search_images(query, excluded_domains, num_results=20):
         "engine": "google_images",
         "q": query,
         "api_key": SERP_API_KEY,
-        "tbs": "qdr:m,isz:l",
+        "tbs": "qdr:m,isz:ex",
         "num": num_results,
     }
     resp = requests.get("https://serpapi.com/search", params=params, timeout=30)
