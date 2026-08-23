@@ -23,10 +23,10 @@ def is_excluded(result, excluded_domains):
     return any(domain in source or domain in link or domain in original for domain in excluded_domains)
 
 
-def is_portrait(result):
+def is_landscape(result):
     width = result.get("original_width") or 0
     height = result.get("original_height") or 0
-    return height > width
+    return height < width
 
 
 def search_images(query, excluded_domains, num_results=20):
@@ -44,7 +44,7 @@ def search_images(query, excluded_domains, num_results=20):
     results = data.get("images_results", [])
 
     results = [r for r in results if not is_excluded(r, excluded_domains)]
-    results = [r for r in results if not is_portrait(r)]
+    results = [r for r in results if is_landscape(r)]
     return results
 
 
