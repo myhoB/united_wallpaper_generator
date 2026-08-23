@@ -225,7 +225,7 @@
     font-size: 12px;
     margin-top: 10px;
   }
-  #confirm-banner {
+  #confirm-banner, #fetch-status {
     margin-top: 16px;
     padding: 14px 16px;
     background: rgba(63, 185, 80, 0.15);
@@ -235,11 +235,11 @@
     font-size: 14px;
     animation: flash-in 0.25s ease;
   }
-  #confirm-banner.working {
+  #confirm-banner.working, #fetch-status.working {
     background: rgba(88, 166, 255, 0.12);
     border-color: #388bfd;
   }
-  #confirm-banner.failed {
+  #confirm-banner.failed, #fetch-status.failed {
     background: rgba(248, 81, 73, 0.12);
     border-color: #f85149;
   }
@@ -277,6 +277,11 @@
 <h1>MUFC Wallpaper Picker</h1>
 <p class="subtitle">Click a photo to select it as your wallpaper base.</p>
 <div class="token-bar" id="token-bar"></div>
+
+<div class="toolbar">
+  <button id="fetch-images-btn">&#8635; Fetch new images</button>
+</div>
+<div id="fetch-status" style="display:none;"></div>
 
 <div id="content">
   <div class="status">Loading candidates…</div>
@@ -678,8 +683,8 @@ function downloadFile(url, filename) {
   a.remove();
 }
 
-async function pollForRunId(token, dispatchedAt, attempts = 15) {
-  const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=5`;
+async function pollForRunId(token, workflowFile, dispatchedAt, attempts = 15) {
+  const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${workflowFile}/runs?per_page=5`;
   for (let i = 0; i < attempts; i++) {
     const res = await fetch(url, { headers: ghHeaders(token) });
     if (res.ok) {
@@ -704,6 +709,73 @@ async function pollRunStatus(token, runId, attempts = 60) {
   }
   return 'timeout';
 }
+
+const CANDIDATES_WORKFLOW_FILE = 'generate_candidates.yml';
+
+function setFetchStatus(state, html) {
+  const el = document.getElementById('fetch-status');
+  el.className = state; // '', 'working', or 'failed' — reuses confirm-banner's color styles
+  el.style.display = 'none';
+  void el.offsetWidth;
+  el.innerHTML = html;
+  el.style.display = 'block';
+}
+
+document.getElementById('fetch-images-btn').addEventListener('click', async () => {
+  const token = getToken();
+  if (!token) {
+    promptForToken();
+    if (!getToken()) return;
+  }
+
+  const btn = document.getElementById('fetch-images-btn');
+  btn.disabled = true;
+  setFetchStatus('working', `<span class="spinner"></span>Triggering image search…`);
+
+  const dispatchedAt = Date.now();
+  const dispatchRes = await fetch(
+    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${CANDIDATES_WORKFLOW_FILE}/dispatches`,
+    {
+      method: 'POST',
+      headers: { ...ghHeaders(token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: 'main', inputs: {} }),
+    }
+  );
+
+  if (!dispatchRes.ok) {
+    const msg = dispatchRes.status === 401 || dispatchRes.status === 403
+      ? 'Token was rejected — it may be invalid, expired, or missing the right permissions.'
+      : `GitHub API returned ${dispatchRes.status}.`;
+    setFetchStatus('failed', `<strong>&#10007; Couldn't start search.</strong> ${msg}`);
+    btn.disabled = false;
+    return;
+  }
+
+  setFetchStatus('working', `<span class="spinner"></span>Searching for new candidates…`);
+
+  const runId = await pollForRunId(token, CANDIDATES_WORKFLOW_FILE, dispatchedAt);
+  if (!runId) {
+    setFetchStatus('failed',
+      `<strong>&#10007; Triggered, but couldn't find the run.</strong> Check the ` +
+      `<a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/actions" target="_blank">Actions tab</a> manually.`);
+    btn.disabled = false;
+    return;
+  }
+
+  const conclusion = await pollRunStatus(token, runId);
+
+  if (conclusion !== 'success') {
+    setFetchStatus('failed',
+      `<strong>&#10007; Search ${conclusion === 'timeout' ? 'timed out' : 'failed'}.</strong> Check the ` +
+      `<a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/actions/runs/${runId}" target="_blank">run log</a> for details.`);
+    btn.disabled = false;
+    return;
+  }
+
+  setFetchStatus('', `<strong>&#10003; Done</strong> — refreshing the gallery below.`);
+  btn.disabled = false;
+  loadCandidates();
+});
 
 function computeCropAndResolution() {
   const rect = getViewportRect();
@@ -786,7 +858,7 @@ document.getElementById('confirm-btn').addEventListener('click', async () => {
 
   setBanner('working', `<span class="spinner"></span>Workflow triggered — waiting for it to start…`);
 
-  const runId = await pollForRunId(token, dispatchedAt);
+  const runId = await pollForRunId(token, WORKFLOW_FILE, dispatchedAt);
   if (!runId) {
     setBanner('failed',
       `<strong>&#10007; Triggered, but couldn't find the run.</strong> Check the ` +
