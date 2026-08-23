@@ -7,8 +7,8 @@ SERP_API_KEY = os.environ["SERP_API"]
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")  # optional — notification is skipped if not set
 CONFIG_FILE = "image_search_config.json"
 OUTPUT_FILE = "docs/candidates.json"
-MAX_CANDIDATES = 12
-NEW_CANDIDATE_ALERT_THRESHOLD = 6
+MAX_CANDIDATES = 40
+NEW_CANDIDATE_ALERT_THRESHOLD = 10
 
 
 def load_config():
