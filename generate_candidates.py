@@ -8,7 +8,7 @@ NTFY_TOPIC = os.environ.get("NTFY_TOPIC")  # optional — notification is skippe
 CONFIG_FILE = "image_search_config.json"
 OUTPUT_FILE = "docs/candidates.json"
 MAX_CANDIDATES = 40
-NEW_CANDIDATE_ALERT_THRESHOLD = 20
+NEW_CANDIDATE_ALERT_THRESHOLD = 15
 
 
 def load_config():
@@ -24,28 +24,87 @@ def is_excluded(result, excluded_domains):
 
 
 def is_landscape(result):
+    """Keep only images wider than they are tall — the shape we actually want."""
     width = result.get("original_width") or 0
     height = result.get("original_height") or 0
-    return height < width
+    return width > height
 
 
-def search_images(query, excluded_domains, num_results=20):
-    """Query SerpApi's Google Images engine for candidate photos."""
+def search_google_images(query, num_results=100):
+    """
+    Google Images via SerpApi.
+    tbs breakdown:
+      qdr:m            -> posted within the past month
+      isz:lt,islt:2mp  -> larger than ~1600x1200 (explicit size floor, not the vague "large" bucket)
+      itp:photo        -> photographs only — excludes clipart, line drawings, graphics
+    """
     params = {
         "engine": "google_images",
         "q": query,
         "api_key": SERP_API_KEY,
-        "tbs": "qdr:m,isz:l",
+        "tbs": "qdr:m,isz:lt,islt:2mp,itp:photo",
         "num": num_results,
     }
     resp = requests.get("https://serpapi.com/search", params=params, timeout=30)
     resp.raise_for_status()
-    data = resp.json()
-    results = data.get("images_results", [])
+    return resp.json().get("images_results", [])
 
-    results = [r for r in results if not is_excluded(r, excluded_domains)]
-    results = [r for r in results if is_landscape(r)]
-    return results
+
+def search_bing_images(query, count=50):
+    """
+    Bing Images via SerpApi — same account/key, no separate signup needed.
+    photo='photo'         -> photographs only, excludes graphics/clipart
+    imagesize='wallpaper' -> Bing's own high-resolution bucket
+    aspect='wide'         -> landscape orientation (belt-and-braces with our own is_landscape check)
+    age='lt43200'         -> newer than 43200 minutes (~30 days)
+
+    Wrapped defensively: if this engine or its params ever change/break, we fall
+    back to Google-only results rather than failing the whole run.
+    """
+    params = {
+        "engine": "bing_images",
+        "q": query,
+        "api_key": SERP_API_KEY,
+        "count": count,
+        "photo": "photo",
+        "imagesize": "wallpaper",
+        "aspect": "wide",
+        "age": "lt43200",
+    }
+    try:
+        resp = requests.get("https://serpapi.com/search", params=params, timeout=30)
+        resp.raise_for_status()
+        raw_results = resp.json().get("images_results", [])
+    except Exception as e:
+        print(f"WARNING: Bing search failed, continuing with Google results only: {e}")
+        return []
+
+    # Normalize to the same shape as Google's results — Bing's field names
+    # can differ slightly, so check a couple of likely alternatives defensively.
+    normalized = []
+    for r in raw_results:
+        normalized.append({
+            "original": r.get("original") or r.get("image") or r.get("link"),
+            "original_width": r.get("original_width") or r.get("width"),
+            "original_height": r.get("original_height") or r.get("height"),
+            "thumbnail": r.get("thumbnail"),
+            "source": r.get("source"),
+            "link": r.get("link"),
+            "title": r.get("title"),
+        })
+    return normalized
+
+
+def dedupe_by_url(results):
+    seen = set()
+    deduped = []
+    for r in results:
+        url = r.get("original")
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        deduped.append(r)
+    return deduped
 
 
 def sort_candidates(results):
@@ -107,11 +166,22 @@ def main():
     query = config["search_query"]
     excluded_domains = config.get("excluded_domains", [])
 
-    print(f"Searching: {query}")
-    results = search_images(query, excluded_domains)
-    results = sort_candidates(results)
-    print(f"Found {len(results)} usable candidates, keeping top {MAX_CANDIDATES}")
+    print(f"Searching Google Images: {query}")
+    google_results = search_google_images(query)
+    print(f"  {len(google_results)} raw results")
 
+    print(f"Searching Bing Images: {query}")
+    bing_results = search_bing_images(query)
+    print(f"  {len(bing_results)} raw results")
+
+    combined = dedupe_by_url(google_results + bing_results)
+    print(f"{len(combined)} combined results after de-duplication")
+
+    results = [r for r in combined if not is_excluded(r, excluded_domains)]
+    results = [r for r in results if is_landscape(r)]
+    print(f"{len(results)} usable candidates after domain/orientation filtering, keeping top {MAX_CANDIDATES}")
+
+    results = sort_candidates(results)
     frontend_data = to_frontend_format(results)
 
     previous_candidates = load_previous_candidates()
