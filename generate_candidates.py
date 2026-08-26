@@ -7,8 +7,11 @@ SERP_API_KEY = os.environ["SERP_API"]
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")  # optional — notification is skipped if not set
 CONFIG_FILE = "image_search_config.json"
 OUTPUT_FILE = "docs/candidates.json"
-MAX_CANDIDATES = 40
-NEW_CANDIDATE_ALERT_THRESHOLD = 15
+MAX_CANDIDATES = 12
+NEW_CANDIDATE_ALERT_THRESHOLD = 6
+
+
+DEFAULT_REQUIRED_KEYWORDS = ["manchester united", "man utd", "man united", "man. united"]
 
 
 def load_config():
@@ -28,6 +31,20 @@ def is_landscape(result):
     width = result.get("original_width") or 0
     height = result.get("original_height") or 0
     return width > height
+
+
+def is_relevant(result, required_keywords):
+    """
+    Drop results that don't actually mention the team in their title — a
+    safety net against search engines returning tangentially related photos
+    (e.g. a generic football action shot, or a photo of the opposing team
+    from an article that merely mentions the query).
+    If required_keywords is empty, this filter is a no-op (always passes).
+    """
+    if not required_keywords:
+        return True
+    title = (result.get("title") or "").lower()
+    return any(kw.lower() in title for kw in required_keywords)
 
 
 def search_google_images(query, num_results=100):
@@ -165,6 +182,7 @@ def main():
     config = load_config()
     query = config["search_query"]
     excluded_domains = config.get("excluded_domains", [])
+    required_keywords = config.get("required_keywords", DEFAULT_REQUIRED_KEYWORDS)
 
     print(f"Searching Google Images: {query}")
     google_results = search_google_images(query)
@@ -179,7 +197,8 @@ def main():
 
     results = [r for r in combined if not is_excluded(r, excluded_domains)]
     results = [r for r in results if is_landscape(r)]
-    print(f"{len(results)} usable candidates after domain/orientation filtering, keeping top {MAX_CANDIDATES}")
+    results = [r for r in results if is_relevant(r, required_keywords)]
+    print(f"{len(results)} usable candidates after domain/orientation/relevance filtering, keeping top {MAX_CANDIDATES}")
 
     results = sort_candidates(results)
     frontend_data = to_frontend_format(results)
