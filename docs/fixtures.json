@@ -53,6 +53,16 @@
       "status": "TIMED",
       "month": 9,
       "year": 2026
+    },
+    {
+      "day_label": "Thu 10 Sep",
+      "time_label": "21:00",
+      "home": "Man. United",
+      "away": "Sabah FK",
+      "competition": "UEFA Champions League",
+      "status": "TIMED",
+      "month": 9,
+      "year": 2026
     }
   ]
 }
