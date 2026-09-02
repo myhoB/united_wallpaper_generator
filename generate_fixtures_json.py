@@ -68,8 +68,8 @@ def main():
     print(f"Fetching fixtures from {date_from} to {date_to}")
 
     matches = fetch_fixtures(date_from, date_to)
+    matches.sort(key=lambda m: m["utcDate"])  # full ISO datetime — correct chronological order
     fixtures = [to_frontend_fixture(m) for m in matches]
-    fixtures.sort(key=lambda f: (f["year"], f["month"], f["time_label"]))
 
     today = date.today()
     if today.month == 12:
