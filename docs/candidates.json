@@ -1,21 +1,5 @@
 [
   {
-    "image_url": "https://dynamic-crop-cdn.scoreplay.io/472/6044713/media_123132387_122746541.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAzdFBOMivdo9NDrL2dantcdiXaZF1xjfTN-onisrYJQ&s",
-    "width": 8127,
-    "height": 5418,
-    "source": "Manchester United",
-    "title": "Match preview: United v Aston Villa | Manchester United"
-  },
-  {
-    "image_url": "https://dynamic-crop-cdn.scoreplay.io/472/6135353/media_123918759_123533417.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD6cwJaZ-2Pdl8wihKietMRkx0svb4xp2Hx82_WKo6jQ&s=10",
-    "width": 7008,
-    "height": 4672,
-    "source": "Manchester United",
-    "title": "Highlights: United v Forest | Manchester United"
-  },
-  {
     "image_url": "https://cdn.mos.cms.futurecdn.net/6acVD3WA3w7yEgMDFFepQE.jpg",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnDGng_u9gpHWqWioWISDzx90v3YCrKa5rie1Y51YOjw&s=10",
     "width": 5927,
@@ -40,28 +24,12 @@
     "title": "Manchester United vs Ipswich Town Live Score, Highlights and Results Today"
   },
   {
-    "image_url": "https://www.irishtimes.com/resizer/v2/2CL7EPJCP2F77OB5SO5T2FU3UU.jpg?auth=0980ec109a6d736e11c43a7b3e57f4256742471e16c6225c489f428db1cd24f2",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCKp2UqL3EWMOid7648JrQQabEltmcTcZ8G7sWBw_oQ&s",
-    "width": 5000,
-    "height": 3335,
-    "source": "The Irish Times",
-    "title": "Manchester United surge past Sabah on Champions League return \u2013 The Irish  Times"
-  },
-  {
     "image_url": "https://www.the-sun.com/wp-content/uploads/sites/6/2026/09/bruno-fernandes-manchester-united-celebrates-1107206101_3a4f0f.jpg?quality=80&strip=all",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyimC_RzImo0pfkt2TnuSsB8uL4UpaFB8e0xshsXCJzA&s=10",
     "width": 4567,
     "height": 3045,
     "source": "The Sun",
     "title": "Man Utd vs Sabah LIVE: Red Devils make perfect return to Champions League  as Carrick's side THRASH European minnows"
-  },
-  {
-    "image_url": "https://static.independent.co.uk/2026/08/22/14/2026-08-22T130142Z_2031812274_UP1EM8M106THO_RTRMADP_3_SOCCER-ENGLAND-HUL-MUN.JPG",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn9lhFp8HVwPlczogsRMEXHi0PT-4EbG9E9TMXDtYxOw&s=10",
-    "width": 4311,
-    "height": 2969,
-    "source": "The Independent",
-    "title": "Hull vs Man Utd LIVE: Premier League result and final score as Carrick's  men stunned by Tigers | The Independent"
   },
   {
     "image_url": "https://images2.minutemediacdn.com/image/upload/c_crop,w_4693,h_2639,x_0,y_120/images/voltaxMediaLibrary/mmsport/si/01m1xkxba12angf9vc7p.jpg",
@@ -112,24 +80,8 @@
     "title": "Supersub strikes again as Sesko gives Man United win at Everton"
   },
   {
-    "image_url": "https://static.independent.co.uk/2026/08/15/18/2026-08-15T171821Z_1969976589_UP1EM8F1C2K6A_RTRMADP_3_SOCCER-FRIENDLY-MUN-MIL.JPG",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTm3vD1hY8jvCrwmXPO84MTuNNxGbHokYCt3n0qN-FIA&s=10",
-    "width": 3606,
-    "height": 2373,
-    "source": "The Independent",
-    "title": "Marcus Rashford makes first Man United appearance in 20 months in defeat to  Ruben Amorim's AC Milan | The Independent"
-  },
-  {
-    "image_url": "https://static.independent.co.uk/2026/08/30/18/01M19S8W35QZ05ABA428SXQJ3C.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtLpxozzHLRvy9jRGQh6H74BO0QlXOHkSeuoLEVCf6cA&s=10",
-    "width": 3571,
-    "height": 2381,
-    "source": "The Independent",
-    "title": "Why was Man Utd's goal against Ipswich not disallowed after Harry Maguire's  handball before deflected shot? | The Independent"
-  },
-  {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130534/Screenshot-2026-08-30-at-17.47.27-2.png",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcUzGo_jUSljEY9ZIYHnmhM0d-WX56meswhCvwzO18tw&s=10",
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130520/Screenshot-2026-08-30-at-17.47.26-22.png",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrRmZj1b0P51Cs3w0LU311L8eHILItR_1mXladvDvkGg&s=10",
     "width": 3840,
     "height": 2160,
     "source": "The New York Times",
@@ -152,20 +104,20 @@
     "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball | Goal.com"
   },
   {
+    "image_url": "https://c.files.bbci.co.uk/5dee/live/2b2561a0-a4fc-11f1-aed2-8d6da8d75094.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk5r1PoM-IJ9XEEAGaw53StOQHSO1jpNBauKbLmQLqIw&s=10",
+    "width": 3721,
+    "height": 2094,
+    "source": "BBC",
+    "title": "Why Harry Maguire goal in Man Utd 5-2 Ipswich was allowed to stand - BBC  Sport"
+  },
+  {
     "image_url": "https://static.standard.co.uk/2026/08/30/18/2292231266..",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStu4vWZL_a7ARoDTZW_-pmpMurNNPB_1-J2Hou-OpAzA&s=10",
     "width": 3300,
     "height": 2200,
     "source": "Evening Standard",
     "title": "Man Utd vs Ipswich LIVE: Premier League match stream, latest team news,  lineups, TV, prediction | The Standard"
-  },
-  {
-    "image_url": "https://www.wtnh.com/wp-content/uploads/sites/100/2026/09/6a9db95da97cc4.87829982.jpeg?strip=1",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV5iRuDXqWz4iJcVHiWBwFh5rXNf6iPnCe6kbE9GaYqw&s=10",
-    "width": 2975,
-    "height": 1983,
-    "source": "WTNH.com",
-    "title": "Arsenal rallies to 2-1 win against Chelsea and Man United drops more points  in the Premier League | WTNH.com"
   },
   {
     "image_url": "https://img.chelseafc.com/image/upload/f_auto,w_1440,c_fill,g_faces,dpr_2.0,q_90/editorial/women's-team/2026/Sept/Aston%20Villa%20(h)/CFCW_Villa_Sep_26_2.jpg",
@@ -192,12 +144,12 @@
     "title": "Manchester United 2026-27 preview: Rashford returns, can Carrick restore  the glory days? - The Athletic"
   },
   {
-    "image_url": "https://assets.goal.com/images/v3/getty-2292720124/crop/MM5DEOBQGE5DCNJXGY5G433XMU5DAORRGQ3A====/GettyImages-2292720124.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOx8js0orXymDkXnyaNup66UI97W5GufqQMa4kYJqmzw&s=10",
+    "image_url": "https://media.zenfs.com/en/goal_ca_683/acac1c479db0e4fb21a2c4d21d904a1c.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZVnXJdcz6D_-H4HZUI1aYsjvoh_1soPIPwtQ3OUaqtQ&s=10",
     "width": 2801,
     "height": 1576,
-    "source": "Goal.com",
-    "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball | Goal.com"
+    "source": "Yahoo Sports",
+    "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball - Yahoo Sports"
   },
   {
     "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/852/118/hi-res-8a514dada95cd2d707e59a27d3daa52e_crop_north.jpg?w=2560",
@@ -208,14 +160,6 @@
     "title": "Carlos Carvalhal: Manchester United Must Use Bruno Fernandes as an 8 Not a  10"
   },
   {
-    "image_url": "https://media.zenfs.com/en/the_football_faithful_articles_458/dfda8e86a14a2fc23b479406a59d51dd.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSROBU6B6tShRc3jjR3OuP9igaGfxHUiYZJuxc3lBKcKQ&s=10",
-    "width": 2560,
-    "height": 1707,
-    "source": "Yahoo Sports",
-    "title": "Manchester United vs Sabah \u2013 Predicted lineup and team news - Yahoo Sports"
-  },
-  {
     "image_url": "https://athlonsports.com/.image/MjY6MDAwMDAwMDAxNDMzODk3/brighton-hove-albion-v-manchester-united-premier-league.jpg?profile=w2560&x=50&y=50",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7z7yY6kX55nhwBVgGnDTE-iiEHLSodWi_UMURSqJXqA&s=10",
     "width": 2560,
@@ -224,12 +168,12 @@
     "title": "How & Where to Watch Manchester United vs. Ipswich Town? Start Time, Live  Streaming and TV Channels - Athlon"
   },
   {
-    "image_url": "https://www.thenationalherald.com/wp-content/uploads/2026/09/Germany-Champions-League-Soccer-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKTSJ3iOVgbjHsKD3j1P1RTc9heV-fsps8sgeh4mUKA&s=10",
+    "image_url": "https://media.zenfs.com/en/the_football_faithful_articles_458/dfda8e86a14a2fc23b479406a59d51dd.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSROBU6B6tShRc3jjR3OuP9igaGfxHUiYZJuxc3lBKcKQ&s=10",
     "width": 2560,
     "height": 1707,
-    "source": "The National Herald",
-    "title": "Harry Kane Scores in Bayern Win as Manchester United Victorious on  Champions League Return - The National Herald"
+    "source": "Yahoo Sports",
+    "title": "Manchester United vs Sabah \u2013 Predicted lineup and team news - Yahoo Sports"
   },
   {
     "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30131544/GettyImages-2292720945-scaled.jpg",
@@ -240,19 +184,75 @@
     "title": "Man Utd 5-2 Ipswich: How good was Fernandes? Why did VAR allow 'Maguire  goal'? How did Rashford do? - The Athletic"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/20142444/GettyImages-2287908557-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZDwaMnoEwjEEXF3Yfpg832IskZLE1AurdZIM5FWqtbA&s=10",
-    "width": 2560,
-    "height": 1706,
-    "source": "The New York Times",
-    "title": "How Michael Carrick navigated his first Man Utd summer with late transfers  and young blood - The Athletic"
-  },
-  {
     "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/803/167/hi-res-96e58bb30ff1bb336802adf6f16d8109_crop_north.jpg?w=2560",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgfS8miMvkfl-VtOXXw6ngNrsWzWtdWTVd9myNMgSGmQ&s=10",
     "width": 2560,
     "height": 1703,
     "source": "Bleacher Report",
     "title": "Lionel Messi Brace Leads Barcelona to Win vs. Manchester United, Progress  in UCL"
+  },
+  {
+    "image_url": "https://www.thetimes.com/imageserver/image/fc065625-afaa-448c-8e6f-72749664fbc8.jpg?strip=all&format=webp&resize=2360",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfuPumSRj_PmQB-3rjUwJSobUPDdiEvDyMMARxm_SM0Q&s=10",
+    "width": 2360,
+    "height": 1652,
+    "source": "The Times",
+    "title": "Champions League latest: Man United get off to perfect start \u2014 as it  happened"
+  },
+  {
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/03/gettyimages-2264215478.jpg?quality=90&strip=all&crop=0.011759172154278%2C0%2C99.976481655691%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS-4GXFSp01I7otdzxRiE-Yd0ixAGfrhfVDOXiLRTp_g&s=10",
+    "width": 2400,
+    "height": 1615,
+    "source": "The Busby Babe - SB Nation",
+    "title": "Manchester United 2-1 Crystal Palace: Reds recover from slow start to stake  claim on 3rd | The Busby Babe"
+  },
+  {
+    "image_url": "https://platform.royalbluemersey.sbnation.com/wp-content/uploads/sites/139/2026/09/gettyimages-2263262180.jpg?quality=90&strip=all&crop=0.026910656620025%2C0%2C99.94617868676%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTftVHQ6jY-g-n-LNC3K7q2wobg-qVi8EjRsGq43g2nnA&s=10",
+    "width": 2400,
+    "height": 1615,
+    "source": "Royal Blue Mersey - SB Nation",
+    "title": "Everton vs Manchester United: Match Preview| Toffees seek response after  tumultuous week | Royal Blue Mersey"
+  },
+  {
+    "image_url": "https://icdn.hayters.com/wp-content/uploads/2026/09/manchester-united-v-sabah-fc-uefa-champions-league-2026-27-league-phase-md1-3.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7ytcJmc9GWzq7RSp0Y0rKCMU0ADiPDdMJXclXxkKWoA&s=10",
+    "width": 2403,
+    "height": 1602,
+    "source": "hayters.com",
+    "title": "Man Utd 4-0 Sabah LIVE - United cruise to victory in Champions League"
+  },
+  {
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/08/gettyimages-2290598767.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDCtnsAOkuSMx9aWoleal_xZYLn_NWpwuO5kIxqakSlg&s=10",
+    "width": 2400,
+    "height": 1599,
+    "source": "The Busby Babe - SB Nation",
+    "title": "Match Preview: Hull City vs. Manchester United | The Busby Babe"
+  },
+  {
+    "image_url": "https://cdn.mos.cms.futurecdn.net/q5UCySR5UXVzU3zB7LRNSd.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyxTOQHZfUvkDcG5tLeE6OJfss2dc_6qU8Z4cB9onvqw&s=10",
+    "width": 2560,
+    "height": 1497,
+    "source": "FourFourTwo",
+    "title": "Manchester United trolled by Brighton on Twitter after Sunday's defeat to  Seagulls | FourFourTwo"
+  },
+  {
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/09/gettyimages-2293342573.jpg?quality=90&strip=all&crop=0%2C0.01453065969195%2C100%2C99.970938680616&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGhoHPYmGCAmIoMujV7ryhh1I5WBaJ9J9Z6Uya3QK51g&s=10",
+    "width": 2400,
+    "height": 1584,
+    "source": "The Busby Babe - SB Nation",
+    "title": "Everton 2-2 Manchester United: Late screamers share the spoils on  Merseyside | The Busby Babe"
+  },
+  {
+    "image_url": "https://www.wjhl.com/wp-content/uploads/sites/98/2023/10/6521afafef7c91.02960058.jpeg?w=2560&h=1440&crop=1",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ82Y9YCaON1_zv_Cr9n2xhIu7zIbouAZMwZboHgJlbmA&s=10",
+    "width": 2560,
+    "height": 1440,
+    "source": "WJHL",
+    "title": "Man United manager Ten Hag demands action after late win against Brentford.  Spurs top Premier League | WJHL | Tri-Cities News & Weather"
   }
 ]
