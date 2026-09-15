@@ -2,17 +2,16 @@ name: Daily MUFC Fixtures Check
 
 permissions:
   contents: write
-  
+
 on:
   schedule:
-    # Runs at 08:15 UTC daily
     - cron: '15 8 * * *'
   workflow_dispatch: {}  # allows manual "Run workflow" button for testing
 
 concurrency:
   group: mufc-fixtures
   cancel-in-progress: false
-  
+
 jobs:
   send-fixtures:
     runs-on: ubuntu-latest
@@ -26,7 +25,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install requests icalendar
 
       - name: Run fixtures script
         env:
