@@ -1,11 +1,75 @@
 [
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130534/Screenshot-2026-08-30-at-17.47.27-2.png",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcUzGo_jUSljEY9ZIYHnmhM0d-WX56meswhCvwzO18tw&s=10",
+    "image_url": "https://platform.bitterandblue.sbnation.com/wp-content/uploads/sites/29/2025/09/gettyimages-2234848292.jpg?quality=90&strip=all&crop=0,0,100,100",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgjUsxd_FeR7Uk5usckYdQgfwR96yS1te9YQ1qd1GAA&s=10",
+    "width": 8256,
+    "height": 5504,
+    "source": "Bitter and Blue - SB Nation",
+    "title": "Three things we learned - Manchester City 3-0 Manchester United | Bitter  and Blue"
+  },
+  {
+    "image_url": "https://library.sportingnews.com/styles/twitter_card_120x120/s3/2026-09/GettyImages-2294019719.jpg?itok=IDES64_E",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXa3Zl8AJ9ARO_4_daqbs5f1NU_a5qpJKwZudyEdAjFQ&s",
+    "width": 6586,
+    "height": 4393,
+    "source": "The Sporting News",
+    "title": "Man United vs. Sabah score, stats, highlights as Red Devils begin Champions  League campaign with dominant win | Sporting News"
+  },
+  {
+    "image_url": "https://www.irishtimes.com/resizer/v2/IEYUUWPGZNCJFJUUI6YQMLUUIM.jpg?focal=2470%2C467&auth=c1f48bce94dcfda4356d88c5c495ba556d8f311b2f14ebef7f523b3f30294534&width=4500&height=3000",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9lY6k8DtWyYEY7Tf6A58s13-JAVbIwsPztuIN1sV_3A&s=10",
+    "width": 4500,
+    "height": 3000,
+    "source": "The Irish Times",
+    "title": "Manchester United edge towards top four spot as Liverpool drop points  against Aston Villa \u2013 The Irish Times"
+  },
+  {
+    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6179587/media_124319367_123934299.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREvvJ00mquvz9aDbJD7XnddY5LhIriLWs63-ai_gQniw&s",
+    "width": 3932,
+    "height": 2621,
+    "source": "Manchester United",
+    "title": "Manchester United 3 Fulham 2 | Manchester United"
+  },
+  {
+    "image_url": "https://cassette.sphdigital.com.sg/image/straitstimes/49a6723832dda4d0cbe9e105543384cda56af0210cdc6310091d908a3dbcc4fe",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqhSwP2dwnwk65U2Cbbct71YuBqHhazoz7V69pyTLHhQ&s=10",
+    "width": 4000,
+    "height": 2423,
+    "source": "The Straits Times",
+    "title": "Manchester United and Bayern cruise in Champions League matches | The  Straits Times"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130559/Screenshot-2026-08-30-at-17.47.27-22.png",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGzqRe_UerWhDFpMvjvkpPFi77Zgkzh-rtExgWvINnXQ&s=10",
     "width": 3840,
     "height": 2160,
     "source": "The New York Times",
     "title": "Man Utd 5-2 Ipswich: How good was Fernandes? Why did VAR allow 'Maguire  goal'? How did Rashford do? - The Athletic"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2296862994/crop/MM5DIOJZGI5DEOBQHA5G433XMU5DAORSGYYA====/GettyImages-2296862994.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTadPfqnsWFxEn-nkPNdtj6-1LdbH32so8kao1738E58A&s=10",
+    "width": 3840,
+    "height": 2160,
+    "source": "Goal.com",
+    "title": "Manchester United Overview | Goal.com English Saudi Arabia"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2295997981/crop/MM5DIMBQGA5DEMRVGA5G433XMU5DIOBVHI3TK===/GettyImages-2295997981.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLt1F-oee9zJJ__MMTpKb6SXRgjLRV2wE5oz_csjcKkQ&s=10",
+    "width": 3840,
+    "height": 2160,
+    "source": "Goal.com",
+    "title": "Michael Owen labels glum-faced Marcus Rashford as Manchester United's weak  link following Fulham draw | Goal.com"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2278024474/crop/MM5DGOBXGI5DEMJXHA5G433XMU5DAORQ/GettyImages-2278024474.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ38HiSbcg05lKh1ojl9EHBB-Zi4DjnTgvTq6abbr7trg&s=10",
+    "width": 3840,
+    "height": 2160,
+    "source": "Goal.com",
+    "title": "Where to watch Manchester United today? Live stream & TV channel for  upcoming games | Goal.com US"
   },
   {
     "image_url": "https://assets.goal.com/images/v3/getty-2292719788/crop/MM5DGNZUGA5DEMJQGQ5G433XMU5DAORRHE2Q====/GettyImages-2292719788.jpg?auto=webp&format=pjpg&width=3840&quality=60",
@@ -14,6 +78,62 @@
     "height": 2104,
     "source": "Goal.com",
     "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball | Goal.com UK"
+  },
+  {
+    "image_url": "https://c.files.bbci.co.uk/5dee/live/2b2561a0-a4fc-11f1-aed2-8d6da8d75094.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk5r1PoM-IJ9XEEAGaw53StOQHSO1jpNBauKbLmQLqIw&s=10",
+    "width": 3721,
+    "height": 2094,
+    "source": "BBC",
+    "title": "Why Harry Maguire goal in Man Utd 5-2 Ipswich was allowed to stand - BBC  Sport"
+  },
+  {
+    "image_url": "https://contentfulproxy.stadion.io/zl2jjr3puakk/6dc5dRL7MGZqpCNAMZFlw0/13282accd4b3e6a69f3e387ef1a84e68/IZ1_1476.jpg?fm=webp&fit=fill&f=center&w=3457&h=1944",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7HElLasIeTJigaQRHw-U04JiVwztisor4qARwnO__3Q&s=10",
+    "width": 3457,
+    "height": 1944,
+    "source": "West Ham United",
+    "title": "Manchester United v West Ham United women's team | All You Need To Know -  West Ham United FC"
+  },
+  {
+    "image_url": "https://img.chelseafc.com/image/upload/f_auto,w_1440,c_fill,g_faces,dpr_2.0,q_90/editorial/women's-team/2026/Sept/Man%20Utd%20(a)/CFCW_Man_Utd_Sep_26.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO7XgMqRj78aG-9hSVeuLtkEz2MMHNAcR-ozKUPljemA&s=10",
+    "width": 2880,
+    "height": 1920,
+    "source": "Chelsea FC",
+    "title": "Attacker voted Star of the Match against Man Utd! | News | Official Site |  Chelsea Football Club"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2025/09/20143110/Robert-Sanchez-Chelsea-Manchester-United-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7WIjI-5Eg7nHm1tUEmsdQlNdwBUpcCP72mjIB_oyBHw&s=10",
+    "width": 2560,
+    "height": 1788,
+    "source": "The New York Times",
+    "title": "Manchester United 2 Chelsea 1 \u2013 Amorim's side hold on after red cards for  Sanchez, Casemiro - The Athletic"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2024/08/16160613/GettyImages-2167055517-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTojpb5O9Eykvzulz78nps9h33s-ZEG44Fnspofw6mGCg&s=10",
+    "width": 2560,
+    "height": 1749,
+    "source": "The New York Times",
+    "title": "Man Utd 1 Fulham 0 \u2013 Zirkzee provides bite, Glazer watches on but where was  Sancho? - The Athletic"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2292720124/crop/MM5DEOBQGE5DCNJXGY5G433XMU5DAORRGQ3A====/GettyImages-2292720124.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOx8js0orXymDkXnyaNup66UI97W5GufqQMa4kYJqmzw&s=10",
+    "width": 2801,
+    "height": 1576,
+    "source": "Goal.com",
+    "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball | Goal.com UK"
+  },
+  {
+    "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/085/403/hi-res-584b1426bc6a0fb9db7bbdf565cb5a94_crop_north.jpg?w=2560",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaykoPC8U1ipaAA3MP7hQMoT5nxtgjZSYdxftV4zT7tQ&s=10",
+    "width": 2560,
+    "height": 1708,
+    "source": "Bleacher Report",
+    "title": "Wayne Rooney Deserves More Respect and Love at Manchester United"
   },
   {
     "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/01/17090812/GettyImages-2256130954-scaled.jpg",
@@ -32,20 +152,20 @@
     "title": "How & Where to Watch Manchester United vs. Ipswich Town? Start Time, Live  Streaming and TV Channels - Athlon"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2025/08/14111050/GettyImages-2229212316-1-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhamXoOijaKgepATLRGwyDqhemizwlDETj2YG2rpHpgA&s=10",
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/03/15114728/GettyImages-2266200335-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQ5ChjA2qrHO1bLakxwZIT2bkXmia8E4bTGLYQNfrOA&s=10",
     "width": 2560,
     "height": 1707,
     "source": "The New York Times",
-    "title": "Manchester United 2025-26 season preview: A new front line to help purge  memories of Bilbao - The Athletic"
+    "title": "Manchester United 3 Aston Villa 1: Champions League spot secured? Bruno  Fernandes assist record inevitable? - The Athletic"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30131700/GettyImages-2292228743-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZZggszQcv1fmZx7fmqeCYzZh3Hs44CW2uAhPa0Brvg&s=10",
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/09/06134345/GettyImages-2293813241-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwlcSv4rNjoktCKg5YzqfcNlpwiku6rsXKgl10mp-S3A&s=10",
     "width": 2560,
     "height": 1706,
     "source": "The New York Times",
-    "title": "Man Utd 5-2 Ipswich: How good was Fernandes? Why did VAR allow 'Maguire  goal'? How did Rashford do? - The Athletic"
+    "title": "Manchester United need to learn how to kill the hope - The Athletic"
   },
   {
     "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30131544/GettyImages-2292720945-scaled.jpg",
@@ -56,6 +176,30 @@
     "title": "Man Utd 5-2 Ipswich: How good was Fernandes? Why did VAR allow 'Maguire  goal'? How did Rashford do? - The Athletic"
   },
   {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30131700/GettyImages-2292228743-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZZggszQcv1fmZx7fmqeCYzZh3Hs44CW2uAhPa0Brvg&s=10",
+    "width": 2560,
+    "height": 1706,
+    "source": "The New York Times",
+    "title": "Man Utd 5-2 Ipswich: How good was Fernandes? Why did VAR allow 'Maguire  goal'? How did Rashford do? - The Athletic"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/04/02084410/GettyImages-2268820023-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX2T06mYSX-accmjB4aAV8bJAFlLzSAd2a948LqPC0ow&s=10",
+    "width": 2560,
+    "height": 1706,
+    "source": "The New York Times",
+    "title": "What Manchester United's internationals have been up to: From vintage  Fernandes to dismay for Maguire - The Athletic"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/09/17123738/GettyImages-2291533824-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfKHZlzJra9CLp5XjJp0nZypQcgNxnunapxWVaRKQHQ&s=10",
+    "width": 2560,
+    "height": 1706,
+    "source": "The New York Times",
+    "title": "Why Manchester United suddenly can't defend \u2013 sloppy, disorganised and do  they miss Casemiro? - The Athletic"
+  },
+  {
     "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/197/043/hi-res-a98fe1606d90fc5e14c48cb40f415852_crop_north.jpg?w=2560",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWn7taKGMbdQDEQ-ktcMPEeLeyBwPNbMr1MdBRBc13Bw&s=10",
     "width": 2560,
@@ -64,12 +208,12 @@
     "title": "Michael Carrick Is Key to Manchester United's Recovery Under Louis Van Gaal"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/05/24125216/GettyImages-2277978781-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1lqmmw0xRqmtRdFv68SOjVng1SvtvHjcxHprWe0_QA&s=10",
-    "width": 2560,
-    "height": 1665,
-    "source": "The New York Times",
-    "title": "Brighton 0 Manchester United 3: How did Fernandes make Premier League  history? What is possible next season? - The Athletic"
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2025/10/gettyimages-2242029591.jpg?quality=90&strip=all&crop=1.2228260869565%2C0%2C97.554347826087%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd6ZKxeYNaspDUrDlgTPvHo9RazkSNQsnbHYVbhpssww&s=10",
+    "width": 2400,
+    "height": 1608,
+    "source": "The Busby Babe - SB Nation",
+    "title": "Liverpool 1-2 Manchester United: Maguire Heads Home United's First Anfield  Win In Nearly A Decade | The Busby Babe"
   },
   {
     "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/05/gettyimages-2274717185.jpg?quality=90&strip=all&crop=2.375%2C0%2C95.25%2C100&w=2400",
@@ -88,6 +232,14 @@
     "title": "Tactical Analysis: Kobbie Mainoo and Manchester United's third goal show  the Michael Carrick difference | The Busby Babe"
   },
   {
+    "image_url": "https://cdn.mos.cms.futurecdn.net/q5UCySR5UXVzU3zB7LRNSd.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyxTOQHZfUvkDcG5tLeE6OJfss2dc_6qU8Z4cB9onvqw&s=10",
+    "width": 2560,
+    "height": 1497,
+    "source": "FourFourTwo",
+    "title": "Manchester United trolled by Brighton on Twitter after Sunday's defeat to  Seagulls | FourFourTwo"
+  },
+  {
     "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/08/gettyimages-2292228453.jpg?quality=90&strip=all&crop=0%2C5.5595280657848%2C100%2C88.88094386843&w=2400",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDTDLdkEOX15jIDDD0IB3W9zK-vtV4urHruyaFAQ6UIA&s=10",
     "width": 2400,
@@ -96,59 +248,11 @@
     "title": "Manchester United 5-2 Ipswich Town: Bruno Hat-Trick fuels first win of the  season | The Busby Babe"
   },
   {
-    "image_url": "https://pbs.twimg.com/media/HNhglz9W4AATVjK?format=webp&name=large",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp33G-e0aF9BsDXS3n4pRAaOFQch6NnuVZzY25NAbjgw&s=10",
-    "width": 2048,
-    "height": 1366,
-    "source": "X",
-    "title": "Manchester United on X: \"Second-half action at the Olympic Stadium \ud83c\udfdf\ufe0f\ud83c\uddeb\ud83c\uddee\"  / X"
-  },
-  {
-    "image_url": "https://pbs.twimg.com/media/HNhgfaWWYAAOlcJ?format=webp&name=large",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2MoPiv9j_DEHfZbFMUjhSfZ0Ut4T7Bp_2MwQoNVwi8A&s=10",
-    "width": 2048,
-    "height": 1365,
-    "source": "X",
-    "title": "Manchester United on X: \"Second-half action at the Olympic Stadium \ud83c\udfdf\ufe0f\ud83c\uddeb\ud83c\uddee\"  / X"
-  },
-  {
-    "image_url": "https://pbs.twimg.com/media/HKwxgt6XEAAgVol?format=webp&name=large",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm1fH_YrOnVPRzsN-nOR7KB2h_F9szRk2iVaPKLA88YA&s=10",
-    "width": 2048,
-    "height": 1365,
-    "source": "X",
-    "title": "Manchester United on X: \"\ud83c\udde7\ud83c\uddf7 \ud83c\udd9a \ud83c\uddf2\ud83c\udde6 Three Reds were involved as Brazil  and Morocco drew 1-1 in their opening #FIFAWorldCup game \ud83e\udd1d\" / X"
-  },
-  {
-    "image_url": "https://www.aljazeera.com/wp-content/uploads/2025/07/GettyImages-2227798330-1753943352.jpg?resize=1920%2C1440",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvkRVhofAQO2nqBVm7xeTJ7Da2_Vkn4ZKQHcpmro6EQ&s=10",
-    "width": 1920,
+    "image_url": "https://www.yourbasin.com/wp-content/uploads/sites/78/2026/09/6aab1503abbfa9.01836655.jpeg?w=2560&h=1440&crop=1",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkbmbstuZKkZ-I1_H-kNuaMSydA0AwoVLTcWOHFYxL6Q&s=10",
+    "width": 2560,
     "height": 1440,
-    "source": "Al Jazeera",
-    "title": "Manchester United defeat Bournemouth in Premier League friendly match |  Football News | Al Jazeera"
-  },
-  {
-    "image_url": "https://dynamic-crop-cdn.scoreplay.io/472/6346062/media_125412860_125028655_compressed.jpg?fmt=webp&f=center&w=1920",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfaHIlQ7beWPC_KDZZVHvnvHAETxHZry5KZge69gXQHw&s",
-    "width": 1920,
-    "height": 1280,
-    "source": "www.manutd.com",
-    "title": "Official Manchester United Website | ManUtd.com | Manchester United"
-  },
-  {
-    "image_url": "https://www.irishexaminer.com/cms_media/module_img/10448/5224381_2_org_2.85810601.jpg.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuhN2Q6WXXOZF70HNl8TkJ8FVY3lzZjqLYrrqr3N9T9A&s=10",
-    "width": 2000,
-    "height": 1136,
-    "source": "Irish Examiner",
-    "title": "Manchester United ease to victory over Sabah on Champions League return"
-  },
-  {
-    "image_url": "https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8010/1788112838010-i",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmkzepdqagRkyWdmRrD7JmWUU5o4bND6RfLT6Ecwuzhw&s=10",
-    "width": 1920,
-    "height": 1080,
-    "source": "JioHotstar",
-    "title": "Watch Manchester United vs Ipswich: Extended Highlights video"
+    "source": "Yourbasin",
+    "title": "Carrick's woes continue as Man United stunned by Brighton in League Cup |  Yourbasin"
   }
 ]
