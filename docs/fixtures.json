@@ -1,59 +1,7 @@
 {
-  "this_month_label": "September 2026",
-  "next_month_label": "October 2026",
+  "this_month_label": "October 2026",
+  "next_month_label": "November 2026",
   "this_month": [
-    {
-      "day_label": "Sun 6 Sep",
-      "time_label": "15:00",
-      "home": "Everton",
-      "away": "Man Utd",
-      "competition": "Premier League",
-      "status": "SCHEDULED",
-      "month": 9,
-      "year": 2026
-    },
-    {
-      "day_label": "Thu 10 Sep",
-      "time_label": "21:00",
-      "home": "Man Utd",
-      "away": "Sabah",
-      "competition": "UEFA Champions League",
-      "status": "SCHEDULED",
-      "month": 9,
-      "year": 2026
-    },
-    {
-      "day_label": "Sun 13 Sep",
-      "time_label": "17:30",
-      "home": "Man Utd",
-      "away": "Man City",
-      "competition": "Premier League",
-      "status": "SCHEDULED",
-      "month": 9,
-      "year": 2026
-    },
-    {
-      "day_label": "Wed 16 Sep",
-      "time_label": "21:00",
-      "home": "Man Utd",
-      "away": "Brighton",
-      "competition": "League Cup",
-      "status": "SCHEDULED",
-      "month": 9,
-      "year": 2026
-    },
-    {
-      "day_label": "Sun 20 Sep",
-      "time_label": "17:30",
-      "home": "Fulham",
-      "away": "Man Utd",
-      "competition": "Premier League",
-      "status": "SCHEDULED",
-      "month": 9,
-      "year": 2026
-    }
-  ],
-  "next_month": [
     {
       "day_label": "Sat 10 Oct",
       "time_label": "18:30",
@@ -112,6 +60,58 @@
       "competition": "Premier League",
       "status": "SCHEDULED",
       "month": 10,
+      "year": 2026
+    }
+  ],
+  "next_month": [
+    {
+      "day_label": "Tue 3 Nov",
+      "time_label": "21:00",
+      "home": "Man Utd",
+      "away": "Roma",
+      "competition": "UEFA Champions League",
+      "status": "SCHEDULED",
+      "month": 11,
+      "year": 2026
+    },
+    {
+      "day_label": "Sun 8 Nov",
+      "time_label": "17:30",
+      "home": "Man Utd",
+      "away": "Villa",
+      "competition": "Premier League",
+      "status": "SCHEDULED",
+      "month": 11,
+      "year": 2026
+    },
+    {
+      "day_label": "Sun 22 Nov",
+      "time_label": "17:30",
+      "home": "Liverpool",
+      "away": "Man Utd",
+      "competition": "Premier League",
+      "status": "SCHEDULED",
+      "month": 11,
+      "year": 2026
+    },
+    {
+      "day_label": "Wed 25 Nov",
+      "time_label": "21:00",
+      "home": "Sporting",
+      "away": "Man Utd",
+      "competition": "UEFA Champions League",
+      "status": "SCHEDULED",
+      "month": 11,
+      "year": 2026
+    },
+    {
+      "day_label": "Sat 28 Nov",
+      "time_label": "16:00",
+      "home": "Man Utd",
+      "away": "Brentford",
+      "competition": "Premier League",
+      "status": "SCHEDULED",
+      "month": 11,
       "year": 2026
     }
   ]
