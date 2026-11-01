@@ -1,35 +1,11 @@
 [
   {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6882095/media_131749677_131368617.JPG",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBYfUvxfE6G3G-U26uOfi6-iiqZ1G_8-CxcQjCyQt-mg&s",
-    "width": 9504,
-    "height": 6336,
+    "image_url": "https://dynamic-crop-cdn.scoreplay.io/472/6943672/media_132311555_131930817.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfzL3viWy7JOOR60uBeMksUisxMV9Tgs23JSOfEqitfQ&s",
+    "width": 4827,
+    "height": 3218,
     "source": "Manchester United",
     "title": "Report: United 0 Manchester City 1 | Manchester United"
-  },
-  {
-    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/09/gettyimages-2296259773.jpg?quality=90&strip=all&crop=0,0,100,100",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLVwB-pEVg7aSVk33L94JasqJC7fAmL3ezXO3MJqD1Ww&s=10",
-    "width": 7008,
-    "height": 4672,
-    "source": "The Busby Babe - SB Nation",
-    "title": "Fulham 1-1 Manchester United: A lackluster end to a frustrating week | The  Busby Babe"
-  },
-  {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6749251/media_130340673_129958792.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf41h6QXAc7ojajcN6BtpNq2ZXdpXd0fNgZjNj5zmTUQ&s",
-    "width": 5476,
-    "height": 3651,
-    "source": "Manchester United",
-    "title": "Maguire: We fought but can be better | Manchester United"
-  },
-  {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6732786/media_130196104_129814056.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN42kutRXvXq8vrDtqxUws5lOUKtCigrkteww1p4QDgQ&s",
-    "width": 5428,
-    "height": 3619,
-    "source": "Manchester United",
-    "title": "Maguire: We fought but can be better | Manchester United"
   },
   {
     "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6780020/media_130758379_130376712.jpg",
@@ -38,6 +14,22 @@
     "height": 3105,
     "source": "Manchester United",
     "title": "Report: Como 4 United 1 | Manchester United"
+  },
+  {
+    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6621289/media_128767857_128385020.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5jESqGgCIJ3BzlDB899W7sg16bZ3F0uiptu2gFxN4WA&s",
+    "width": 4478,
+    "height": 2985,
+    "source": "Manchester United",
+    "title": "How did Atleti fare ahead of United clash? | Manchester United"
+  },
+  {
+    "image_url": "https://www.livemint.com/lm-img/img/2026/10/15/original/SOCCER-ENGLAND-MUN-MARTINEZ-0_1792042899630_PF3Z.JPG",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShccypzVGC4WpGTyuwXAf1maivPXPrY_M37yRhDBZO8Q&s=10",
+    "width": 4373,
+    "height": 2766,
+    "source": "Mint",
+    "title": "Lisandro Martinez breaks silence after Manchester United criticism: 'I  spoke out of anger' | Mint"
   },
   {
     "image_url": "https://media.zenfs.com/en/goal_ca_683/b3c85e35f78541c230b37dc87a29e528.jpg",
@@ -56,8 +48,8 @@
     "title": "Who was Player of the Match against Tottenham? | Manchester United"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130509/Screenshot-2026-08-30-at-17.47.26-12.png",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRHGMcR9f58j5Y2JP1tlpwLvXhCJ7TpNcAG9QwI-E_cA&s=10",
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/08/30130534/Screenshot-2026-08-30-at-17.47.27-2.png",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0M9s3glKaAT-0MzDDQlxk-BBtNLTqTOcoBwsTsH9iuQ&s=10",
     "width": 3840,
     "height": 2160,
     "source": "The New York Times",
@@ -80,36 +72,44 @@
     "title": "Another Man Utd meltdown! Matheus Cunha & Michael Carrick caught in FURIOUS  off-camera row as Champions League disaster sparks dressing room revolt -  Yahoo Sports"
   },
   {
-    "image_url": "https://i.pcmag.com/imagery/articles/06SNOfu3K23pW60a60qmCIG-1..v1792749746.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSye8AW8VZ4EldRjCJENZxlAfxD9mXaQGgKrHA7qkn5FQ&s=10",
+    "image_url": "https://i.pcmag.com/imagery/articles/06F4DWirZAd3RNTmD8oV9it-1.fit_lim.v1792155925.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTglMkNhIYRWlOwy9eUIBWgtg450GZwOBTpoGVgCWQSJQ&s=10",
     "width": 3027,
     "height": 1703,
     "source": "PCMag",
-    "title": "Manchester United vs. Bournemouth Livestream: How to Watch Today's Premier  League Game for Free | PCMag"
-  },
-  {
-    "image_url": "https://assets.goal.com/images/v3/imago-sport-1084337291/crop/MM5DGMBQGA5DCNRYHA5G433XMU5DAORTGM======/imago-image.jpeg?auto=webp&format=pjpg&width=3840&quality=60",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmnq-MjUYsTNfwSE9eVSxKI9trhTuisgFfShLBI-a83Q&s=10",
-    "width": 3000,
-    "height": 1688,
-    "source": "Goal.com",
-    "title": "Bentancur shown red after wild action; 10-man Tottenham Hotspur fight back  admirably against Manchester United | Goal.com South Africa"
+    "title": "Leeds United vs. Manchester United Livestream: How to Watch Today's Premier  League Game for Free | PCMag"
   },
   {
     "image_url": "https://contentfulproxy.stadion.io/phva2knh4vy5/7BQszk92aHDatGdCptLceW/7f53aa7fa107115baaf9f359d29ec4f6/Dominic_Calvert-Lewin_goal_vs_Manchester_United_Oct_26__1_.jpg?fm=webp&fit=fill&f=face&w=3000&h=1687",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0isUr0twkFK5_HVUbCmzICYW0uIrIxyyyi-ImQ-AoLg&s=10",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCKOavMRI4cYskl-btK_nAGm-zT-sniKJyZ64vVkEsQ&s",
     "width": 3000,
     "height": 1687,
     "source": "Leeds United",
     "title": "Leeds United draw 1-1 with Manchester United at Elland Road - Leeds United"
   },
   {
-    "image_url": "https://legacymedia.sportsplatform.io/images_root/slides/photos/000/974/495/114920392_display_image.jpg?w=2560",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpOSoeRolxUwGWUKAmydQkbUsa7_uDvD3oxjYRsW9ZOg&s=10",
+    "image_url": "https://www.krqe.com/wp-content/uploads/sites/12/2026/10/6ade952006f941.98301015.jpeg?strip=1",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR13JXaGM7FDVtUTzXjb8pIptW8Z5rDw7GerEECOQpoJA&s=10",
+    "width": 2701,
+    "height": 1801,
+    "source": "KRQE",
+    "title": "Man United humbled by Bournemouth to leave Carrick's job under threat,  Liverpool beats Brighton | KRQE News 13"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/09/22070321/GettyImages-2296255734-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcaA3Gs5R6LC98ceiX7gBsapCOYwYR0d9qu4zo-9Y7ow&s=10",
     "width": 2560,
-    "height": 1843,
-    "source": "Bleacher Report",
-    "title": "Champions League Final: 10 Things Learned from Manchester United v Barcelona"
+    "height": 1819,
+    "source": "The New York Times",
+    "title": "At Man United, belief is battered and magic is missing. It goes beyond a  poor run of form - The Athletic"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2025/03/30124511/amasss-scaled-e1743353197148.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBtfJsFHvFhsTFHhN0ZKN7cwA0Dwm0t7jemyc0nmajaw&s=10",
+    "width": 2560,
+    "height": 1803,
+    "source": "The New York Times",
+    "title": "What is the role of Manchester United's academy in 2025? - The Athletic"
   },
   {
     "image_url": "https://static0.givemesportimages.com/wordpress/wp-content/uploads/2026/10/manchester-united-forward-bryan-mbeumo-in-action-against-bournemouth.jpg",
@@ -152,20 +152,12 @@
     "title": "Complete Analysis of Angel Di Maria's Manchester United Role"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/05/17092817/GettyImages-2276698584-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKMOK1f29oT1OmOqrtqz5E8hrLelvmouOD03UjMQWn2w&s=10",
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/10/11091543/cunha-man-utd-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3wfgpQO-_DO32N31Oxd_tnrgt6ZhtQDfdMI0WCtuSUQ&s=10",
     "width": 2560,
     "height": 1707,
     "source": "The New York Times",
-    "title": "Man Utd 3 Nottm Forest 2 \u2014 Why was Cunha goal allowed? Fernandes equals  Premier League assist record - The Athletic"
-  },
-  {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/09/22114348/GettyImages-2293931554-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0auztV1qMXx_9l4rQH1RcKdT2gD4bk4asroUMnQ8-Dg&s=10",
-    "width": 2560,
-    "height": 1707,
-    "source": "The New York Times",
-    "title": "Have Man Utd been unlucky or bad this season? The three problems Michael  Carrick needs to solve - The Athletic"
+    "title": "Manchester United, Michael Carrick and a darkening Old Trafford mood - The  Athletic"
   },
   {
     "image_url": "https://media.squawka.com/images/2026/10/13214337/ManchesterUnited131026_ID3FT2T56-scaled.jpg",
@@ -176,28 +168,12 @@
     "title": "Atletico Madrid vs Man Utd stats and analysis: Simeone wins the battle as  Carrick's new ideas fail to inspire | Squawka | EN"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/10/11091543/cunha-man-utd-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3wfgpQO-_DO32N31Oxd_tnrgt6ZhtQDfdMI0WCtuSUQ&s=10",
+    "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/745/408/hi-res-077309907d60694e7a809f4257acab19_crop_north.jpg?w=2560",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL78KHrseZ0je4XnTzUF34-5lDpbJsqfS3Jb2vBNU-Jw&s=10",
     "width": 2560,
     "height": 1707,
-    "source": "The New York Times",
-    "title": "Manchester United, Michael Carrick and a darkening Old Trafford mood - The  Athletic"
-  },
-  {
-    "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/341/039/hi-res-1340ad803785e50fdbbdec948d117bc1_crop_north.jpg?w=2560",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgPOkS-9M5s4iRnkzjJQsnMQ3wDhzKJjbY_OxfeH_ffQ&s=10",
-    "width": 2560,
-    "height": 1705,
     "source": "Bleacher Report",
-    "title": "International Goals a Bonus as Radamel Falcao Fights to Save Man Utd Career"
-  },
-  {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/05/24124426/GettyImages-2277984062-scaled-e1779641111608.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCD0PQPXcCQytuFQwgKYmR1jLb7-nwdOvo4WjHyTP3HQ&s=10",
-    "width": 2534,
-    "height": 1689,
-    "source": "The New York Times",
-    "title": "Brighton 0 Manchester United 3: How did Fernandes make Premier League  history? What is possible next season? - The Athletic"
+    "title": "Manchester United Complete Signing of Fred from Shakhtar Donetsk"
   },
   {
     "image_url": "https://www.thetimes.com/imageserver/image/99da39de-655a-4ce6-829f-1c02a2c4d04b.jpg?strip=all&format=webp&resize=2360",
@@ -216,20 +192,20 @@
     "title": "Champions League latest: Man United get off to perfect start \u2014 as it  happened"
   },
   {
-    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/10/gettyimages-2300806114.jpg?quality=90&strip=all&crop=0.0068946497517928%2C0%2C99.986210700496%2C100&w=2400",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGJhK49FygXTVzCZB1NrnCQ2qqRFfjUmWGdVIKOs3ceg&s=10",
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/10/gettyimages-2298978449.jpg?quality=90&strip=all&crop=1.0030864197531%2C0%2C97.993827160494%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzC-KSDvDNPeY8sWgxwAynikX82AjWUuT7nvTiphFUw&s=10",
     "width": 2400,
-    "height": 1615,
+    "height": 1616,
     "source": "The Busby Babe - SB Nation",
-    "title": "Como 4-1 Manchester United: Player Ratings | The Busby Babe"
+    "title": "Champions League Match Preview: Atletico de Madrid vs. Manchester United |  The Busby Babe"
   },
   {
-    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/10/gettyimages-2266196204.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJmGrachUGSO8cQoGajc-MrZXSsrRHZt6Lm9xKlb1Snw&s=10",
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/10/gettyimages-2302847689.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHqagpy-M8awiboLvbwvxxmxMg2493_L2GVKW6Zm8m4w&s=10",
     "width": 2400,
     "height": 1600,
     "source": "The Busby Babe - SB Nation",
-    "title": "Match Preview: Manchester United vs. Tottenham | The Busby Babe"
+    "title": "Chelsea 2-0 Manchester United: Positive start wasted by Martinez, defensive  stupidity | The Busby Babe"
   },
   {
     "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/08/gettyimages-2290598767.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
@@ -240,6 +216,14 @@
     "title": "Match Preview: Hull City vs. Manchester United | The Busby Babe"
   },
   {
+    "image_url": "https://platform.weaintgotnohistory.sbnation.com/wp-content/uploads/sites/178/2026/10/gettyimages-2302318294.jpg?quality=90&strip=all&crop=0%2C0.3654970760234%2C100%2C99.269005847953&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuMJ7Gm04EpDEJ7RFKGpFCn5u19MzK6XU36bp3GW-cNw&s=10",
+    "width": 2400,
+    "height": 1595,
+    "source": "We Ain't Got No History - SB Nation",
+    "title": "Chelsea 2-0 Manchester United, Premier League: Post-match reaction, ratings  | We Ain't Got No History"
+  },
+  {
     "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/10/gettyimages-2300805816.jpg?quality=90&strip=all&crop=0%2C5.1785227582448%2C100%2C89.64295448351&w=2400",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4FGA7S9UBczD3s4BLT4d8wH9wiyuU8FKrgUthfWSECw&s=10",
     "width": 2400,
@@ -248,11 +232,27 @@
     "title": "Leeds United 1-1 Manchester United: Reds fade in second half of third  straight PL draw | The Busby Babe"
   },
   {
+    "image_url": "https://platform.thebusbybabe.sbnation.com/wp-content/uploads/sites/157/2026/08/gettyimages-2292228453.jpg?quality=90&strip=all&crop=0%2C5.5595280657848%2C100%2C88.88094386843&w=2400",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROngq800rfsm6njUNgE34HHrFLtSU9MmfVlz6SbHwoow&s=10",
+    "width": 2400,
+    "height": 1583,
+    "source": "The Busby Babe - SB Nation",
+    "title": "Manchester United 5-2 Ipswich Town: Bruno Hat-Trick fuels first win of the  season | The Busby Babe"
+  },
+  {
     "image_url": "https://wgnradio.com/wp-content/uploads/sites/6/2026/10/6ade2f1ed9a698.49933662.jpeg?w=2560&h=1440&crop=1",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd4-Pq2rfhKl62fVjVWihSi2n3zkytvqYbyHb8mt6v5Q&s=10",
     "width": 2560,
     "height": 1440,
     "source": "WGN Radio",
     "title": "Man United humbled by Bournemouth to leave Carrick's job under threat,  Liverpool beats Brighton | WGN Radio 720 - Chicago's Very Own"
+  },
+  {
+    "image_url": "https://www.cbs17.com/wp-content/uploads/sites/29/2026/10/6ae5fd7d8d10c1.98897139.jpeg?w=2560&h=1440&crop=1",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlbGRunhmx_UvE0ZmVhhp8dctoAr8TaXM0huEXMDTlqA&s=10",
+    "width": 2560,
+    "height": 1440,
+    "source": "CBS 17",
+    "title": "10-man Man United loses at Chelsea to leave Carrick's job in further  jeopardy \u2013 CBS17.com"
   }
 ]
