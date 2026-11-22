@@ -8,12 +8,12 @@
     "title": "Our Player of the Match was 'just phenomenal!' | Manchester United"
   },
   {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/7607476/media_133787828_133408050.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8q3wij-yk5kN7KuBHg7_QWbDK0mU-q0cnCcZ5eYagLw&s",
-    "width": 8063,
-    "height": 4232,
+    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/7013698/media_132828550_132448120.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1SJY6m39iFbioL3AYzObozofd-9nr6Op-NIyHky7cQg&s",
+    "width": 6638,
+    "height": 4425,
     "source": "Manchester United",
-    "title": "Match Preview | Manchester United"
+    "title": "How to watch and follow: United v Aston Villa | Manchester United"
   },
   {
     "image_url": "https://www.the-sun.com/wp-content/uploads/sites/6/2026/11/crop-40961856_3da94f.jpg?quality=80&strip=all",
@@ -24,12 +24,12 @@
     "title": "Man Utd vs Aston Villa LIVE: Fallout after Dorgu's last-gasp header rescues  a point for United & possibly Carrick's job"
   },
   {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/7103514/media_133505087_133125082.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRAd2UQGarileHdVzgcMV_5NanLBr6fLaze0BCLGrnLw&s",
-    "width": 5413,
-    "height": 3609,
+    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/7107613/media_133534278_133154374.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrqZtMs3RZ8qLbpsZ8UKHwoAAvaRmecVue4y-2ROW3UA&s",
+    "width": 5409,
+    "height": 3606,
     "source": "Manchester United",
-    "title": "Villa clash makes Premier League history | Manchester United"
+    "title": "Manchester City 0 United 1 (3-2 agg) | Manchester United"
   },
   {
     "image_url": "https://images.wral.com/7051559a-ffdf-58a4-863a-5495288e6050",
@@ -48,8 +48,8 @@
     "title": "Manchester United 3 Roma 2 | Manchester United"
   },
   {
-    "image_url": "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/F47HO34L6NLAZBDSFJW5TJD5QA.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFQI1biBh2ISCn_xEcFHRpbAgQzil8mWFdB9gwXmI48A&s=10",
+    "image_url": "https://www.reuters.com/resizer/v2/F47HO34L6NLAZBDSFJW5TJD5QA.jpg?auth=a0ea3b3df977a9d933fadf3456c939dc21ed6846a4f6d1ea258ba8d599560ce9",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWVGC0mMMt11gXMUEyBC9QYvoHDpdstf-Kp1NQBOFd1w&s=10",
     "width": 4970,
     "height": 3099,
     "source": "Reuters",
@@ -64,20 +64,20 @@
     "title": "Arab News | Man Utd rescue Villa draw with incredible fightback, Chelsea  stunned"
   },
   {
-    "image_url": "https://scoreplay-mam-media.s3.amazonaws.com/472/6780020/media_130758379_130376712.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqHBLKyCutsdvpeExkVZ3KBy23PTOB2Q6XZwL6LXDYTg&s",
-    "width": 4658,
-    "height": 3105,
-    "source": "Manchester United",
-    "title": "Report: Como 4 United 1 | Manchester United"
-  },
-  {
     "image_url": "https://library.sportingnews.com/styles/twitter_card_120x120/s3/2026-11/GettyImages-2304160622.jpg?itok=c5mrqAlo",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgn2knG4yHwGV-2zhh-YwXomfuL5MKVk1HGHHJT0LLaA&s",
     "width": 4612,
     "height": 3075,
     "source": "The Sporting News",
     "title": "Man United vs. Aston Villa final score, result, highlights, stats as  Zirkzee, Dorgu salvage incredible draw | Sporting News"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2266200335/crop/MM5DIOBSGM5DENZRGM5G433XMU5DAORSGUZA====/GettyImages-2266200335.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrkbVUO5KGEb9X75LYq68svms9OuKu7MUNhnkmhhO0Hw&s=10",
+    "width": 4823,
+    "height": 2713,
+    "source": "Goal.com",
+    "title": "Man Utd player ratings vs Aston Villa: Assist-king Bruno Fernandes strikes  again! Captain keeps on creating havoc as Red Devils consolidate top-four  spot with crucial win | Goal.com"
   },
   {
     "image_url": "https://www.reuters.com/resizer/v2/6JOWKRW7ZFJ6HNBY2BGVFIPQ2Y.jpg?auth=5953fca7fefcb3642f9f057c59cad205b6e0639dba1db4bdfc0fbda14156ce25",
@@ -88,14 +88,6 @@
     "title": "Man Utd fight back to snatch chaotic 4-4 draw, Brighton move second |  Reuters"
   },
   {
-    "image_url": "https://hermes.media.static.aol.com/media/2026/11/03/d47b00bf-f022-34f2-8d1f-9ce1f6e4137d/ebac2dce-2b94-42a3-baa6-af1b05e81eac.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRx8cesDiJsqMlaLx_CImDo8gXBgZhGmo_do3UMNDLyQ&s=10",
-    "width": 3840,
-    "height": 2630,
-    "source": "AOL.com",
-    "title": "Manchester United vs. Roma Lineups and Confirmed Team News - AOL"
-  },
-  {
     "image_url": "https://hermes.media.static.aol.com/media/2026/11/03/d47b00bf-f022-34f2-8d1f-9ce1f6e4137d/48d34d1b-7f2e-44da-9689-5b9017c446ad.jpg",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShxrE-vnaKnTcvXCYrohm5rMbRlNgM_fe4HPRp2-NaJQ&s=10",
     "width": 3840,
@@ -104,48 +96,48 @@
     "title": "Manchester United vs. Roma Lineups and Confirmed Team News - AOL"
   },
   {
-    "image_url": "https://media.zenfs.com/en/goal_uk_815/aad13e3bf7b4200ef0365922028b34a6.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlsZjq30Wpr9L1ozdIC0gBOWf6VLNt0qozLdxLO1SwHA&s=10",
-    "width": 3936,
-    "height": 2214,
-    "source": "Yahoo Sport UK",
-    "title": "Just get off!' - Paul Scholes RIPS into Man Utd flops over 'embarrassing'  post-match habit - Yahoo Sports"
+    "image_url": "https://icdn.utdreport.co.uk/wp-content/uploads/2026/10/IMG_8445.jpeg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnwAEb_A4XOqAT7pulnonEMjcRpIA4AXZQmNm0NUCgA&s=10",
+    "width": 3739,
+    "height": 2493,
+    "source": "utdreport",
+    "title": "Carragher: Mateus Fernandes was 'the one' for Man United"
   },
   {
-    "image_url": "https://assets.goal.com/images/v3/getty-2303110783/crop/MM5DIOBSGQ5DENZRGQ5G433XMU5DAORTG42A====/GettyImages-2303110783.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH6NU6Y5GV0tunkWvm1oj4YarbgtLelUkzegeMXK3c7g&s=10",
+    "image_url": "https://assets.goal.com/images/v3/getty-2304146477/crop/MM5DGOJUG45DEMRSGA5G433XMU5DAORYGM?fm=avif&q=50&w=356",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZCiZPETdYyJzHh1kGoz_qsdyexvJL-7WdVarzh2WQCQ&s=10",
+    "width": 3947,
+    "height": 2220,
+    "source": "LiveScore",
+    "title": "Manchester United and the bear that killed its owner: is spirit enough to  save Carrick?"
+  },
+  {
+    "image_url": "https://assets.goal.com/images/v3/getty-2290294045/crop/MM5DINZSGA5DENRVGU5G433XMU5DGMZ2GE4DQ===/GettyImages-2290294045.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT9RjSfjmFbA0yzwWFLHq-zEtaVachp2z3wD13NcEewg&s=10",
     "width": 3840,
     "height": 2160,
     "source": "Goal.com",
-    "title": "Manchester United Overview | Goal.com English Saudi Arabia"
+    "title": "Manchester United suffer major blow as Amad Diallo faces six-week layoff  following ankle injury in training | Goal.com"
   },
   {
-    "image_url": "https://assets.goal.com/images/v3/getty-2266200335/crop/MM5DIOBSGM5DENZRGM5G433XMU5DAORSGUZA====/GettyImages-2266200335.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJDFed2qrwRalWGs8gX5pJJ9iAJ7fu4QZqSYw3RNvqQ&s=10",
+    "image_url": "https://assets.goal.com/images/v3/getty-2278024474/crop/MM5DGOBXGI5DEMJXHA5G433XMU5DAORQ/GettyImages-2278024474.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1mTTrr_X5y0Y4Pxkg_ZFeAafbERINqaAqlxVFeCdHcQ&s=10",
     "width": 3840,
     "height": 2160,
     "source": "Goal.com",
-    "title": "Man Utd player ratings vs Aston Villa: Assist-king Bruno Fernandes strikes  again! Captain keeps on creating havoc as Red Devils consolidate top-four  spot with crucial win | Goal.com"
+    "title": "Where to watch Manchester United today? Live stream & TV channel for  upcoming games | Goal.com US"
   },
   {
-    "image_url": "https://assets.goal.com/images/v3/getty-2292719788/crop/MM5DGNZUGA5DEMJQGQ5G433XMU5DAORRHE2Q====/GettyImages-2292719788.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrOiOl2MrbRneTvGH5YswNfTbPxXutzXFHlJ6QHm-D8Q&s=10",
-    "width": 3740,
-    "height": 2104,
-    "source": "Goal.com",
-    "title": "Explained: Why Manchester United's second goal against Ipswich Town was not  disallowed despite Harry Maguire's handball | Goal.com"
-  },
-  {
-    "image_url": "https://media.zenfs.com/en/goal_ca_683/0773c9d6c506cc6b0b47fcb46c79ec63.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mQFfxEGhCqTAwEuZuG1uRYmGNoW3lYW3S5N7f7-8Fw&s=10",
-    "width": 3664,
-    "height": 2061,
-    "source": "Yahoo Sports",
-    "title": "Man Utd ready to take legal action over JJ Gabriel's alleged talks with  rival clubs - Yahoo Sports"
+    "image_url": "https://icdn.utdreport.co.uk/wp-content/uploads/2026/10/IMG_8461.jpeg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzdUHMeLNj7SKjwI97e4yZZreNYPXZiZQ4RTg10SZ-w&s=10",
+    "width": 3192,
+    "height": 2149,
+    "source": "utdreport",
+    "title": "Matty Cash to miss Man United vs Villa through suspension"
   },
   {
     "image_url": "https://www.reuters.com/resizer/v2/VSB7U34WZBO4LCL4AE4OKXQBFA.jpg?auth=4bc914c3c5b19301492cd8d57f4923bc2b9507edf96dd788c6a6e836bceac98e",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkEd9XUJuXRsLg2bVsTAyXKpeJYtCd0WI4EqlIkpF2Q&s=10",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6cWcEA8vCbBBfjcoH8EDSN1i71MsomH4zMaCbVv4XxA&s=10",
     "width": 3280,
     "height": 1946,
     "source": "Reuters",
@@ -160,6 +152,30 @@
     "title": "Classic Liverpool vs. Manchester United: King Eric returns to save United |  DAZN News US"
   },
   {
+    "image_url": "https://contentfulproxy.stadion.io/rm6ms1yxue4m/1BlQqeo4YXuPWOqQscdAPX/001d9bc76f4e59e5121b4a9d626fc735/man-utd-kop-10-results-18112026-cover.jpg?fm=webp&fit=fill&f=center&w=3000&h=1688",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLWgnqAVjbRQNJPLEq5-oqdtSlxoF9ZhPUnTMYM6X8mQ&s=10",
+    "width": 3000,
+    "height": 1688,
+    "source": "Liverpool FC",
+    "title": "Ranked - Liverpool's 10 best Premier League wins over Manchester United at  Anfield - Liverpool FC"
+  },
+  {
+    "image_url": "https://contentfulproxy.stadion.io/rm6ms1yxue4m/7GW9kAZEkISb36x8GNSzbi/798a2ff96732eb3c7843e88f3e44f966/u18s-man-utd-24102026-cover.jpeg?fm=webp&fit=fill&f=face&w=3000&h=1687",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtBkRSCAKui2ROjosY4ctxboyWRbhAzThOSxOzBopBcA&s=10",
+    "width": 3000,
+    "height": 1687,
+    "source": "Liverpool FC",
+    "title": "U18s match report: Liverpool beaten in league clash at Manchester United -  Liverpool FC"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/11/03175633/GettyImages-2302923130-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPYFzEIgQC0QN3hyN7gj-LV4_TRfGQmtu_sf9WY7VoQA&s=10",
+    "width": 2560,
+    "height": 1875,
+    "source": "The New York Times",
+    "title": "Champions League briefing: Manchester United fans get just reward, PSG make  more history - The Athletic"
+  },
+  {
     "image_url": "https://cdn.bleacherreport.net/images_root/slides/photos/000/701/601/85165775_original.jpg?w=2560",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThHXlgNm171ibTNcIStqqe8WOOzm23zyg058UybNIRnw&s=10",
     "width": 2560,
@@ -169,27 +185,19 @@
   },
   {
     "image_url": "https://contentfulproxy.stadion.io/rm6ms1yxue4m/1hZWNQKOUysHb8T352Ragc/d6e634e0b1ed7f692af34f3facca2634/Manchester_United_lowdown.jpg?fm=webp&fit=fill&f=center&w=2886&h=1624",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTct0iH5ig247yxhboDvnYRBW_gPyF4XOBfjhihY3n_cw&s",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVAPhCPnXsoNk2771aQ5mJJxWv0jcWpsu_NWIOY6_U8Q&s=10",
     "width": 2886,
     "height": 1624,
     "source": "Liverpool FC",
     "title": "The opposition lowdown: Manchester United - Liverpool FC"
   },
   {
-    "image_url": "https://cdn.bleacherreport.net/images_root/slides/photos/000/773/638/107557871_original.jpg?w=2560",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPQobE5XJil-4F4skwBk7rad9ip7F6vu_H4nStT-zyNA&s=10",
-    "width": 2560,
-    "height": 1758,
-    "source": "Bleacher Report",
-    "title": "Manchester United Vs. Arsenal: FA Cup Showdown at Old Trafford"
-  },
-  {
-    "image_url": "https://static0.givemesportimages.com/wordpress/wp-content/uploads/2026/10/manchester-united-forward-bryan-mbeumo-in-action-against-bournemouth.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmO1O8VqKE2kVXnFOLVuWBIcN5PNZTj_MKRHtYY6rztg&s=10",
+    "image_url": "https://static0.givemesportimages.com/wordpress/wp-content/uploads/2026/11/mixcollage-04-nov-2026-07-05-am-4014.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm69GPei0cYpgBm6tqIaT6EFs_jaHGgbZcHGr1WkgmHw&s=10",
     "width": 3000,
     "height": 1500,
     "source": "GiveMeSport",
-    "title": "Man Utd 0-3 Bournemouth: Ex-Premier League Referee Dismisses Mbeumo Penalty  Shout"
+    "title": "Man Utd 3-2 Roma: Why Michael Carrick Told Matheus Cunha to Leave Pitch"
   },
   {
     "image_url": "https://static01.nyt.com/athletic/uploads/wp/2025/02/28163554/GettyImages-2202543131-scaled.jpg",
@@ -198,14 +206,6 @@
     "height": 1732,
     "source": "The New York Times",
     "title": "Arsenal U18 2-3 Manchester United U18 \u2013 Dowman sparkles, United depth the  difference - The Athletic"
-  },
-  {
-    "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/510/022/hi-res-fe47011d54c2da6d42960e878d39a27b_crop_north.jpg?w=2560",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-MIuKc_uaHt3P_ij4fKSW-lTuxpT1RmFc2uljJbTjFA&s=10",
-    "width": 2560,
-    "height": 1712,
-    "source": "Bleacher Report",
-    "title": "Anthony Martial Officially Completes Manchester United Transfer from Monaco"
   },
   {
     "image_url": "https://legacymedia.sportsplatform.io/img/images/photos/003/242/269/hi-res-30dd088b37463a5b56c23a56ca17f8e1_crop_north.jpg?w=2560",
@@ -224,28 +224,28 @@
     "title": "Matheus Cunha with two late goals and a red as Man Utd secure miraculous  Roma comeback - The Athletic"
   },
   {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/11/16014748/GettyImages-2301933109-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtRyPDY7eXIpw-W77DB4TSVPAtbXgxVv63phVs3RYvmg&s=10",
-    "width": 2560,
-    "height": 1707,
-    "source": "ny times",
-    "title": "Manchester United is toxic. Why is it still a better job than the USMNT? \u2014  The Soccer Weekender - The Athletic"
-  },
-  {
-    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2024/05/25111512/GettyImages-2154603731-scaled.jpg",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE-7rbL1OvOgx4T7UIJCAiPIWjVVVuV9Rq4Xurf3e9fg&s=10",
-    "width": 2560,
-    "height": 1707,
-    "source": "The New York Times",
-    "title": "Manchester City 1 Manchester United 2: A breathtaking team goal and Ten Hag  gets it right to win FA Cup - The Athletic"
-  },
-  {
     "image_url": "https://assets.khelnow.com/news/uploads/2026/07/HNhShB8WsAAk7yv-scaled.jpeg",
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqSjjnCEBCDHvnHOPkpmXIwzA-m8ArrwWTHWRmHKfuDQ&s=10",
     "width": 2560,
     "height": 1707,
     "source": "Khel Now",
     "title": "Manchester United 0-1 Wrexham: Five key takeaways from Pre-Season Friendly"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/11/16014748/GettyImages-2301933109-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtRyPDY7eXIpw-W77DB4TSVPAtbXgxVv63phVs3RYvmg&s=10",
+    "width": 2560,
+    "height": 1707,
+    "source": "The New York Times",
+    "title": "Manchester United is toxic. Why is it still a better job than the USMNT? \u2014  The Soccer Weekender - The Athletic"
+  },
+  {
+    "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/09/06134345/GettyImages-2293813241-scaled.jpg",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7_t-hZAt7jp9moZ73lmy39tO-wdbawHhmeCSeGPUBA&s=10",
+    "width": 2560,
+    "height": 1706,
+    "source": "The New York Times",
+    "title": "Manchester United need to learn how to kill the hope - The Athletic"
   },
   {
     "image_url": "https://static01.nyt.com/athletic/uploads/wp/2026/11/03160042/GettyImages-2303371399-scaled.jpg",
